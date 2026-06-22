@@ -24,7 +24,7 @@ Weapons are cumulative: a skill unlocked in Day 1 pays off in Day 3 and beyond.
 | **The SSH Gate** | `ssh` onto the Yens, identify your node | 🗡️ SSH Sigil: `~/.ssh/config` alias — type `ssh yen`, nothing else | Connect to a remote server; understand what a login node is |
 | **The Cartographer's Room** | `/scratch`, `gsbquota`, `gsbbrowser`, `module avail` | 🗡️ Module Lens: `module spider`, find a hidden module | Understand cluster file system layout; know where data lives, how much space you have, and why |
 | **The Scroll Transfer** | `scp` your grimoire up to the Yens | 🗡️ Rsync Rune: `rsync` instead of `scp`, understand the difference | Move data between local and remote; understand the shared file system |
-| **The Repository** | `git clone` the course repo, create a branch, `add` + `commit` + `push` a file — required for every Boss Gate | 🗡️ History Lens: `git log --oneline`, `git diff`, `git status` / ⚔️ Stash Spell: `git stash` for mid-task interruptions / 🏆 Blame Blade: `git blame` to understand who changed what and why | Version-control every project from day one; understand the fork → branch → commit → push → PR workflow; know why git is non-negotiable for reproducible research |
+| **The Repository** | `git clone` the course repo, create a branch, `add` + `commit` + `push` a file — required for every Boss Gate | 🗡️ History Lens: `git log --oneline`, `git diff`, `git status` / ⚔️ Stash Spell: `git stash` for mid-task interruptions | Version-control every project from day one; understand the fork → branch → commit → push → PR workflow; know why git is non-negotiable for reproducible research |
 | **The Arcane Notebook** | Open JupyterHub, run a cell | 🗡️ Magic Scroll: keyboard shortcuts, `%time` / ⚔️ Shell Tome: `%%bash` cell, run shell from inside Jupyter / 🏆 Vim Sigil: Vim keybindings mode in Jupyter | Run code on cluster hardware from a browser; understand what a kernel is |
 | **The Primer Chamber** | AI primer — token, prompt, LLM, agent (4 pictures) | 💬 Discussion — no chest | Have a working mental model of how LLMs work before touching one |
 | 🔑 **Boss Gate 1** | Find the Archmage's signature spell hidden in `/scratch/…/vault/`. Commit `signature_spell.txt` | — | Use CLI + SSH + shared file system together to solve an open-ended search problem |
@@ -70,11 +70,11 @@ Weapons are cumulative: a skill unlocked in Day 1 pays off in Day 3 and beyond.
 |---|---|---|---|
 | **The Armory** | GPU partition tour — A30 / A40 / H200 (whiteboard) | 💬 Discussion — no chest | Know what GPUs are on the Yens, what each is good for, and how to request one |
 | **The H200 Chamber** | First GPU job (`--gres=gpu:1 --nodelist=yen-gpu4`) | 🗡️ Smi Sight: `nvidia-smi` inside the job / ⚔️ Benchmark Blade: same script on A30 vs H200, compare wall time | Submit and run a GPU-accelerated job; understand GPU memory and why model size matters |
-| **The Summoning Circle** | Ollama — pull a model, chat from Jupyter | 🗡️ Model Menagerie: compare 3 models on speed + quality / ⚔️ Modelfile Magic: custom system prompt via Modelfile / 🏆 Throughput Tome: benchmark requests/sec from H200 | Host a local LLM on cluster hardware; understand when local beats cloud |
+| **The Summoning Circle** | Ollama — pull a model, chat from Jupyter | 🗡️ Model Menagerie: compare 3 models on speed + quality / ⚔️ Modelfile Magic: custom system prompt via Modelfile | Host a local LLM on cluster hardware; understand when local beats cloud |
 | **The Engine Room** | vLLM and NIM on H200 — concept + demo, no hands-on; "Ollama for prototyping, vLLM/NIM for production traffic" | 💬 Discussion — no chest | Understand the production-grade local LLM stack; know when to graduate from Ollama |
 | **The Grand Hall** | Privacy buckets — 3-bucket rule + classify your own datasets (5 min exercise) | 💬 Discussion + exercise — no chest | Apply the 3-bucket rule (public / restricted / PII) to your own research datasets; know when cloud API is off-limits |
 | **The Trap Garden** | Agent risks — hallucination at scale, runaway loops, prompt injection, irreversibility | 💬 Discussion — no chest | Name 4 LLM agent failure modes and a concrete defense for each |
-| 🔑 **Boss Gate 4** | Champion's Ascent — swap Day 3 pipeline to Ollama endpoint, compare outputs, update README with Ollama changes, commit | 🎓 Graduation | Demonstrate the full stack: cluster → SLURM → GPU → local LLM → structured output → documented |
+| 🔑 **Boss Gate 4** | Champion's Ascent — swap Day 3 pipeline to Ollama endpoint, compare outputs, update README with Ollama changes, commit | ⚔️ All floors cleared | Demonstrate the full stack: cluster → SLURM → GPU → local LLM → structured output → documented |
 
 ---
 
@@ -86,7 +86,7 @@ What a student who opens every chest walks away with, organized by domain:
 |---|---|
 | **Shell** | Grep Blade · Wildcard Wand · Shell Rune · Rsync Rune · Arcane Blade |
 | **Remote access** | SSH Sigil · Module Lens · Screen Scroll |
-| **Version control** | History Lens · Stash Spell · Blame Blade |
+| **Version control** | History Lens · Stash Spell |
 | **Python env** | Freeze Flask · Editable Elixir · Pyenv Potion · Profile Rune |
 | **Security** | Shield of `.gitignore` · Keyring Knife |
 | **AI Playground + APIs** | Model Mirror · Stream Stone · Async Arrow |
@@ -94,7 +94,7 @@ What a student who opens every chest walks away with, organized by domain:
 | **Data extraction** | Nested Tome · Retry Rune · Schema Shield |
 | **SLURM + scaling** | Sacct Scythe · Mail Medallion · Template Tome · Watch Wand · Dependency Dagger · Checkpoint Charm · Siege Scale |
 | **Documentation** | Structure Sigil · Changelog Charm |
-| **GPU + local LLMs** | Smi Sight · Benchmark Blade · Model Menagerie · Modelfile Magic · Throughput Tome |
+| **GPU + local LLMs** | Smi Sight · Benchmark Blade · Model Menagerie · Modelfile Magic |
 
 Basic quest only → Level 10 graduate.
 Every chest opened → fully equipped researcher.
