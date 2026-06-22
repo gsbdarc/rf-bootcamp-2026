@@ -94,6 +94,24 @@
 }
 #quest-sync-hint code { font-size: 10px; background: #f0f0f0; padding: 1px 3px; border-radius: 2px; }
 
+/* ── Level display in quest log panel ── */
+#quest-level-display { margin-bottom: 0.7rem; }
+.level-title { font-weight: 700; font-size: 13px; color: #2c3e50; }
+.level-bar { background: #eee; border-radius: 999px; height: 6px; margin-top: 0.35rem; }
+.level-fill {
+  background: linear-gradient(90deg, #e67e22, #f1c40f);
+  border-radius: 999px; height: 6px; transition: width 0.4s ease; min-width: 3px;
+}
+
+/* ── Leaderboard level badge ── */
+.lb-level-num {
+  display: inline-block;
+  background: linear-gradient(135deg, #e67e22, #f1c40f);
+  color: #fff; font-weight: 700; padding: 0.1rem 0.45rem;
+  border-radius: 999px; font-size: 0.82em; margin-right: 0.35rem;
+}
+.lb-level-title { color: #666; font-size: 0.88em; }
+
 .floor-card-locked { opacity: 0.55; }
 .floor-card-locked h3 a { color: #999; pointer-events: none; }
 

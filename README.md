@@ -143,8 +143,8 @@ The grader checks that the files exist and contain valid data — it does not gr
 ## Leaderboard
 
 The leaderboard at `/leaderboard/` ranks students by:
-1. **Boss Gates cleared** (floors unlocked) — everyone should reach 4
-2. **Total score** (quests + chests completed, max 78) — the competitive differentiator
+1. **Level** — computed from quests + chests completed (max Level 10 — Archmage); opening more chests = higher level
+2. **Boss Gates cleared** (tiebreaker) — everyone should reach 4
 
 To update your position: open the **Quest Log** widget (bottom-left of any dungeon page) → **Sync to leaderboard** → save `quest_log.json` to your repo root → commit and push. The grader updates your ranking automatically.
 

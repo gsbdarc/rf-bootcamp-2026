@@ -19,6 +19,8 @@ permalink: /
 > Finished early? Look for **Chests** — optional deeper challenges that unlock a named **Weapon** (a skill you carry for the rest of the course). Weapons compound: what you earn in Day 1 pays off in Day 3.
 >
 > Each floor ends with a **Boss Gate**: a capstone challenge you submit by committing your work to your fork on GitHub. Push your commit → the grader runs → the next floor unlocks on your personal site.
+>
+> Every completed quest and opened chest raises your **Level** (shown in the widget, bottom-left). All main quests → Level 4 Journeyman. Open every chest → Level 10 Archmage. The leaderboard ranks by level.
 
 ---
 
@@ -87,4 +89,4 @@ A fully-equipped researcher who opens every chest across all four floors earns:
 | **Documentation** | Structure Sigil · Changelog Charm |
 | **GPU + local LLMs** | Smi Sight · Benchmark Blade · Model Menagerie · Modelfile Magic |
 
-Basic quest only → Level 10 graduate. Every chest opened → fully equipped researcher.
+All main quests → Level 4 Journeyman. Every chest opened → Level 10 Archmage — fully equipped researcher.

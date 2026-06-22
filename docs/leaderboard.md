@@ -7,7 +7,7 @@ permalink: /leaderboard/
 
 # 🏆 DARC Dungeon Leaderboard
 
-*Rankings update when students sync their quest logs. **Boss Gates** = floors cleared (max 4). **Score** = quests + chests completed out of 78.*
+*Rankings update when students sync their quest logs. **Level** = earned by completing quests and opening chests (max Level 10 — Archmage). **Boss Gates** = floors cleared (max 4).*
 
 <div id="lb-controls">
   <button id="lb-refresh">↻ Refresh</button>
@@ -40,7 +40,7 @@ permalink: /leaderboard/
 .gate-cleared { color: #e67e22; }
 .gate-locked  { color: #ddd; }
 .gate-label { font-size: 0.78em; color: #999; margin-left: 0.4rem; font-family: sans-serif; letter-spacing: 0; }
-.lb-score { font-weight: 600; white-space: nowrap; }
+.lb-level { white-space: nowrap; }
 .lb-bar-wrap { min-width: 120px; }
 .lb-bar { background: #eee; border-radius: 999px; height: 10px; }
 .lb-fill { background: linear-gradient(90deg, #e67e22, #f1c40f); border-radius: 999px; height: 10px; transition: width 0.5s ease; }
@@ -58,6 +58,21 @@ tr.lb-leader td { background: #f4f8ff; }
   var REPO   = 'rf-bootcamp-2026';
   var BRANCH = 'main';
   var TOTAL  = 78;
+
+  var LEVEL_TITLES = [
+    'Initiate', 'Apprentice', 'Scholar', 'Journeyman', 'Adept',
+    'Specialist', 'Expert', 'Veteran', 'Master', 'Archmage',
+  ];
+
+  function computeLevel(checks) {
+    return Math.min(10, Math.floor(checks / TOTAL * 9) + 1);
+  }
+
+  function levelBadge(checks) {
+    var lv = computeLevel(checks);
+    return '<span class="lb-level-num">Lv.' + lv + '</span>'
+      + '<span class="lb-level-title">' + LEVEL_TITLES[lv - 1] + '</span>';
+  }
 
   function parseStudents(text) {
     var students = [], re = /^- username:\s*(\S+)/gm, m;
@@ -116,7 +131,7 @@ tr.lb-leader td { background: #f4f8ff; }
       return '<p>No students registered yet — the instructor will add them before class.</p>';
     }
     var html = '<table class="lb-table"><thead><tr>'
-      + '<th>Rank</th><th>Name</th><th>Boss Gates</th><th>Score</th><th>Progress</th>'
+      + '<th>Rank</th><th>Name</th><th>Level</th><th>Boss Gates</th><th>Progress</th>'
       + '</tr></thead><tbody>';
 
     entries.forEach(function (e, i) {
@@ -126,8 +141,8 @@ tr.lb-leader td { background: #f4f8ff; }
       html += '<tr class="' + rowClass + '">'
         + '<td class="lb-rank">' + rankCell(i) + '</td>'
         + '<td class="lb-name">' + e.name + (allClear ? '<span class="lb-crown">👑</span>' : '') + '</td>'
+        + '<td class="lb-level">' + levelBadge(e.completedChecks) + '</td>'
         + '<td class="lb-gates">' + gateIcons(maxFloor) + '</td>'
-        + '<td class="lb-score">' + e.completedChecks + ' / ' + TOTAL + '</td>'
         + '<td class="lb-bar-wrap">' + progressBar(e.completedChecks) + '</td>'
         + '</tr>';
     });
@@ -155,8 +170,8 @@ tr.lb-leader td { background: #f4f8ff; }
             .catch(function () { return Object.assign({}, s, { floors: [1], completedChecks: 0 }); });
         })).then(function (entries) {
           entries.sort(function (a, b) {
-            var fd = Math.max.apply(null, b.floors) - Math.max.apply(null, a.floors);
-            return fd !== 0 ? fd : b.completedChecks - a.completedChecks;
+            var cd = b.completedChecks - a.completedChecks;
+            return cd !== 0 ? cd : Math.max.apply(null, b.floors) - Math.max.apply(null, a.floors);
           });
           container.innerHTML = renderTable(entries);
           ts.textContent = 'Updated ' + new Date().toLocaleTimeString();

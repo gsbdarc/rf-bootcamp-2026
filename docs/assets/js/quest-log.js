@@ -12,6 +12,11 @@
   // Total possible checkboxes across the entire dungeon (all 4 days)
   const TOTAL_CHECKS = 78;
 
+  const LEVEL_TITLES = [
+    'Initiate', 'Apprentice', 'Scholar', 'Journeyman', 'Adept',
+    'Specialist', 'Expert', 'Veteran', 'Master', 'Archmage',
+  ];
+
   // Full room structure — used to compute per-day totals in the quest log panel.
   // Keys match data-room attributes on checkboxes throughout the site.
   const DAYS = [
@@ -158,22 +163,36 @@
     return { done: done, total: total };
   }
 
+  function computeLevel(done) {
+    return Math.min(10, Math.floor(done / TOTAL_CHECKS * 9) + 1);
+  }
+
   function renderQuestLog() {
     var btn = document.getElementById('quest-log-btn');
     if (!btn) return;
 
     var progress = loadProgress();
     var counts = countCompleted(progress);
+    var level = computeLevel(counts.done);
+    var title = LEVEL_TITLES[level - 1];
 
     var toggle = document.getElementById('quest-log-toggle');
     if (toggle) {
-      toggle.textContent = '📖 Quest Log: ' + counts.done + ' / ' + TOTAL_CHECKS;
+      toggle.textContent = '⚔️ Lv.' + level + ' · ' + counts.done + '/' + TOTAL_CHECKS;
+    }
+
+    var levelEl = document.getElementById('quest-level-display');
+    if (levelEl) {
+      var pct = Math.round(counts.done / TOTAL_CHECKS * 100);
+      levelEl.innerHTML = '<span class="level-title">Level ' + level + ' — ' + title + '</span>'
+        + '<div class="level-bar"><div class="level-fill" style="width:' + pct + '%"></div></div>';
     }
 
     // Update the entrance page summary if present
     var summary = document.getElementById('quest-log-summary');
     if (summary) {
-      summary.textContent = counts.done + ' / ' + TOTAL_CHECKS + ' quests complete';
+      summary.innerHTML = '<strong>Level ' + level + ' — ' + title + '</strong>'
+        + ' &nbsp;·&nbsp; ' + counts.done + '/' + TOTAL_CHECKS + ' quests complete';
     }
 
     // Update panel list items
@@ -211,7 +230,7 @@
     var toggle = document.createElement('button');
     toggle.id = 'quest-log-toggle';
     toggle.type = 'button';
-    toggle.textContent = '📖 Quest Log: 0 / ' + TOTAL_CHECKS;
+    toggle.textContent = '⚔️ Lv.1 · 0/' + TOTAL_CHECKS;
     btn.appendChild(toggle);
 
     var panel = document.createElement('div');
@@ -220,6 +239,10 @@
     var heading = document.createElement('h4');
     heading.textContent = 'Quest Progress';
     panel.appendChild(heading);
+
+    var levelDisplay = document.createElement('div');
+    levelDisplay.id = 'quest-level-display';
+    panel.appendChild(levelDisplay);
 
     var list = document.createElement('ul');
     list.id = 'quest-log-list';
