@@ -6,7 +6,7 @@ You are a pre-doctoral researcher at Stanford GSB. You have four days to learn t
 
 The course is structured as a dungeon game. Each day is a floor. Each hands-on block is a room. You earn skills by completing quests, unlock optional depth by opening chests, and advance to the next floor by passing a Boss Gate — a real deliverable you commit to GitHub.
 
-**Everyone clears all four floors. The real competition is who opens the most chests.**
+**Everyone clears all four floors. The real competition is who reaches the highest level — earned by opening chests.**
 
 At any point, open your Quest Log (bottom-left of any page), click **Sync to leaderboard**, save the file, and push it. Your position on the [leaderboard](https://gsbdarc.github.io/rf-bootcamp-2026/leaderboard/) updates automatically.
 
@@ -152,7 +152,7 @@ To update your position: open the **Quest Log** widget (bottom-left of any dunge
 
 Every room has an optional **Chest** — a one-line challenge you figure out yourself (no walkthrough). Solving it earns a named **Weapon**: a skill that pays off later in the course.
 
-You don't need to open any chests to pass Boss Gates. But researchers who open chests walk away with a deeper toolkit: `rsync`, `asyncio`, fault-tolerant SLURM pipelines, custom Ollama models, and more — and a higher leaderboard rank.
+You don't need to open any chests to pass Boss Gates. But every chest raises your **Level** (visible in the quest log widget) and your leaderboard rank. All main quests only → Level 4 Journeyman. Every chest opened → Level 10 Archmage, fully equipped researcher.
 
 ---
 
