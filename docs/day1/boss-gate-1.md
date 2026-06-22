@@ -18,7 +18,7 @@ permalink: /day1/boss-gate-1/
 > A single spell file bearing the Archmage's signature is hidden somewhere in the vault:
 >
 > ```
-> /scratch/rf_bootcamp_2026/vault/
+> /scratch/shared/rf_bootcamp_2026/vault/
 > ```
 >
 > Find the file. Its name alone is not enough — read its contents to find the signature string inside.

@@ -9,10 +9,10 @@ Output: files named  name_element_tier_type_mastery.spell
         e.g.         thunderstrike_lightning_3_offensive_storm.spell
 
 After generation, pre-stage the grimoire on the Yens before Day 1:
-    scp -r grimoire/ SUNetID@yen.stanford.edu:/scratch/rf_bootcamp_2026/grimoire/
+    scp -r grimoire/ SUNetID@yen.stanford.edu:/scratch/shared/rf_bootcamp_2026/grimoire/
 
 Students copy the vault to their home directory during the Scroll Transfer room:
-    scp -r SUNetID@yen.stanford.edu:/scratch/rf_bootcamp_2026/grimoire/ ~/
+    scp -r SUNetID@yen.stanford.edu:/scratch/shared/rf_bootcamp_2026/grimoire/ ~/
 """
 
 import argparse

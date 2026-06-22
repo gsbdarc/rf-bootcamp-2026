@@ -30,4 +30,4 @@ floor: 1
 | [Boss Gate 1](boss-gate-1/) | 🔑 Capstone | Use everything from today on an open-ended problem |
 
 {: .note }
-> The Grimoire Vault exercise depends on files pre-staged by the instructors at `/scratch/rf_bootcamp_2026/grimoire/`. You will copy them to your home directory in The Scroll Transfer room first.
+> The Grimoire Vault exercise depends on files pre-staged by the instructors at `/scratch/shared/rf_bootcamp_2026/grimoire/`. You will copy them to your home directory in The Scroll Transfer room first.
