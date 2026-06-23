@@ -46,22 +46,23 @@ Your laptop
 │  ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐         │
 │  │ yen1  │ │ yen2  │ │ yen3  │ │ yen4  │ │ yen5  │         │
 │  └───────┘ └───────┘ └───────┘ └───────┘ └───────┘         │
-│  256 cores · ~1 TB RAM each · shared with all researchers   │
-│                                                             │
-│  GPU nodes  (Day 4)                                         │
-│  ┌───────────────────────────────────────────────────┐      │
-│  │  yen-gpu1: 4× A30 (24 GB)                         │      │
-│  │  yen-gpu2/3: 4× A40 (48 GB) each                  │      │
-│  │  yen-gpu4: 2× H200 (141 GB)                       │      │
-│  └───────────────────────────────────────────────────┘      │
+│  256 cores · ~1 TB RAM each · per-user limits enforced      │
+│                         │                                   │
+│                    scheduler (Day 3)                        │
+│                         │                                   │
+│  SLURM compute nodes  (scheduler-only, dedicated)           │
+│  ┌─────────────────────────────────────────────────┐        │
+│  │  8 CPU nodes + 4 GPU nodes  (12 total)          │        │
+│  │  only accessible via sbatch / srun              │        │
+│  └─────────────────────────────────────────────────┘        │
 │                                                             │
 │  Shared storage — all nodes see the same files:             │
 │  /home/users/SUNetID/   ← backed up, limited quota         │
-│  /scratch/SUNetID/      ← large, fast, not backed up       │
+│  /scratch/shared/       ← large, fast, not backed up       │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-`ssh` opens an encrypted tunnel: you type locally, commands execute remotely, output streams back to your screen. The Yens are shared — you and every other researcher are on the same machines — so be a considerate neighbor: don't run jobs that peg all 256 cores for hours on end.
+`ssh` opens an encrypted tunnel: you type locally, commands execute remotely, output streams back to your screen. The interactive Yens are shared — per-user CPU and RAM limits are enforced automatically. See the [current limits](https://rcpedia.stanford.edu/_policies/user_limits/) for details. For heavier jobs, the SLURM scheduler (Day 3) gives you dedicated compute nodes.
 
 **What's inside a Yen server:**
 
@@ -125,6 +126,6 @@ Hidden inside this room is a shortcut that will save you a dozen keystrokes ever
 ## 🧠 Skills Learned
 
 - You can now open a secure shell into the Yens cluster from anywhere with a single command
-- You know the Yens are shared interactive compute servers — powerful, but shared with every researcher on the cluster
+- You know the Yens are shared interactive compute servers — powerful, but with per-user limits enforced; heavy work goes through the SLURM scheduler
 - You can tell at a glance whether you are on your laptop or deep inside a shared remote cluster
 - You can read the login banner to catch system notices, maintenance windows, and usage policies before they catch you
