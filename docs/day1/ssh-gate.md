@@ -48,7 +48,7 @@ Your laptop
 │  /home/users/SUNetID/   ← backed up, limited, personal     │
 │  /yen/projects/         ← backed up, large, for project    │
 │                            files, scripts, and results      │
-│  /scratch/shared/       ← large, fast, NOT backed up       │
+│  /scratch/shared/SUNetID/ ← large, fast, NOT backed up     │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -87,8 +87,10 @@ whoami        # confirm you're logged in as yourself
 
 **Read the banner, then look around:**
 ```bash
-ls ~          # your home directory on the Yens
-pwd           # /home/users/SUNetID
+ls ~                              # your home directory on the Yens
+pwd                               # /home/users/SUNetID
+ls /scratch/shared/$USER          # your scratch space
+ls /yen/projects/                 # shared project storage
 ```
 
 <label class="quest-check"><input type="checkbox" data-room="d1-ssh-gate" data-key="main"> Main Quest complete</label>
