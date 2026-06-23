@@ -98,7 +98,7 @@ whoami        # confirm you're logged in as yourself
 **Read the banner, then look around:**
 ```bash
 ls ~          # your home directory on the Yens
-pwd           # /home/users/SUNetID (or similar)
+pwd           # /home/users/SUNetID
 ```
 
 <label class="quest-check"><input type="checkbox" data-room="d1-ssh-gate" data-key="main"> Main Quest complete</label>
