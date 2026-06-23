@@ -18,21 +18,9 @@ permalink: /day1/ssh-gate/
 
 Your laptop is powerful but limited: one machine, one location, and it has to be open and plugged in for work to run. A **remote server** is a computer you connect to over the network — it's always on, more powerful than your laptop, and your work keeps running after you close the lid.
 
-Think of it this way:
-
-```
-  Your laptop          The Yens (today)         Cloud — AWS/GCP
-  ─────────────        ──────────────────────   ────────────────
-  Your kitchen         Shared restaurant         Rented kitchen
-  ○ ○ ○ burners        ○○○○○○ ○○○○○○ burners    ○○○○○○ burners
-  small fridge         walk-in fridges           rented fridge
-  small store          warehouse (/scratch)      rented storage
-  free, all yours      free, shared              unlimited, costs $$
-```
-
 **What are the Yens?**
 
-The Yens are five shared **interactive compute servers** — not just gateways. Each one is genuinely powerful research hardware: when you SSH in, you land directly on a machine built for real work.
+The Yens are a 17-node shared research computing cluster: 5 interactive nodes you SSH into directly, and 12 nodes accessible only through the SLURM scheduler (Day 3). All 17 nodes share the same file system — a file you write on yen1 is instantly visible on every other node.
 
 ```
 Your laptop
