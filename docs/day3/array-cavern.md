@@ -24,9 +24,9 @@ The cluster is waiting. A hundred SEC filings sit untouched — until now. Write
 **Part 1 — Prepare the input list:**
 
 ```bash
-ls ~/rf_bootcamp_2026/data/sec_filings/*.txt > /scratch/$USER/filings_list.txt
-wc -l /scratch/$USER/filings_list.txt   # confirm: should be 100
-mkdir -p /scratch/$USER/results logs
+ls ~/rf_bootcamp_2026/data/sec_filings/*.txt > /scratch/shared/$USER/filings_list.txt
+wc -l /scratch/shared/$USER/filings_list.txt   # confirm: should be 100
+mkdir -p /scratch/shared/$USER/results logs
 ```
 
 **Part 2 — Write `jobs/array_extract.sh`:**
@@ -44,12 +44,12 @@ mkdir -p /scratch/$USER/results logs
 
 source ~/rf_bootcamp_2026/.venv/bin/activate
 
-FILING=$(sed -n "${SLURM_ARRAY_TASK_ID}p" /scratch/$USER/filings_list.txt)
+FILING=$(sed -n "${SLURM_ARRAY_TASK_ID}p" /scratch/shared/$USER/filings_list.txt)
 echo "Task $SLURM_ARRAY_TASK_ID processing: $FILING"
 
 python3 ~/rf_bootcamp_2026/extract_filing.py \
     --input "$FILING" \
-    --output "/scratch/$USER/results/filing_${SLURM_ARRAY_TASK_ID}.json"
+    --output "/scratch/shared/$USER/results/filing_${SLURM_ARRAY_TASK_ID}.json"
 ```
 
 **Part 3 — Submit and monitor:**
@@ -66,7 +66,7 @@ watch -n 5 squeue -u $USER    # Ctrl-C when done
 import json, csv, os
 from pathlib import Path
 
-RESULTS_DIR = Path(f"/scratch/{os.environ['USER']}/results")
+RESULTS_DIR = Path(f"/scratch/shared/{os.environ['USER']}/results")
 OUTPUT_CSV  = Path("results/extracted_filings.csv")
 OUTPUT_CSV.parent.mkdir(parents=True, exist_ok=True)
 

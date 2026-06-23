@@ -25,8 +25,8 @@ Before you touch a single data file, you need to know the terrain — what's you
 
 ```
 /home/users/SUNetID/      ← your home directory (limited quota, backed up)
-/scratch/SUNetID/         ← scratch space (large, fast, NOT backed up)
-/zfs/projects/            ← group/project storage (ask your PI)
+/yen/projects/            ← project storage (backed up, shared with collaborators)
+/scratch/shared/SUNetID/  ← scratch space (large, fast, NOT backed up)
 ```
 
 **Check your quota:**

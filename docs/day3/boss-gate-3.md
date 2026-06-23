@@ -22,7 +22,7 @@ The final gate stands open — but only your output will unlock it.
 > Process all 100 SEC filings from `data/sec_filings/` using a SLURM job array:
 >
 > 1. Each array task extracts the insider name, role, and transaction date from one filing
-> 2. Outputs are written to `/scratch/$USER/results/filing_N.json` (one per task)
+> 2. Outputs are written to `/scratch/shared/$USER/results/filing_N.json` (one per task)
 > 3. A merge script combines all results into `results/great_scroll_sweep.csv`
 > 4. Failed tasks are listed in `results/failed_tasks.txt`
 > 5. Your array job script, merge script, and `README.md` are committed to your fork

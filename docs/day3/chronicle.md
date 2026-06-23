@@ -42,7 +42,7 @@ Results are combined into a single CSV.
 ### Steps
 ```bash
 # 1. Prepare input list
-ls data/sec_filings/*.txt > /scratch/$USER/filings_list.txt
+ls data/sec_filings/*.txt > /scratch/shared/$USER/filings_list.txt
 
 # 2. Submit the array
 sbatch jobs/array_extract.sh
