@@ -21,7 +21,13 @@ Your grimoire is sorted, your spells are ready — now send them into the cluste
 {: .important }
 > **Quest:** Transfer your sorted grimoire directory from your laptop to your Yens scratch space using `scp`.
 
-Run this from your **laptop** (not on the Yens — open a new local terminal tab):
+First, **on the Yens**, create your scratch directory:
+
+```bash
+mkdir /scratch/shared/$USER
+```
+
+Then, from your **laptop** (open a new local terminal tab):
 
 ```bash
 scp -r ~/Desktop/grimoire/ SUNetID@yen.stanford.edu:/scratch/shared/SUNetID/grimoire/
