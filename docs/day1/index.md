@@ -30,6 +30,3 @@ Six hands-on rooms and a Boss Gate await. Work through each room in order — la
 | [The Scroll Transfer](scroll-transfer/) | 💻 Hands-on | Conjure data across machines and master the shared file system |
 | [The Repository](repository/) | 💻 Hands-on | Lock your progress in Git: fork → branch → commit → push, unbreakable |
 | [Boss Gate 1](boss-gate-1/) | 🔑 Capstone | Prove you command everything from today on an open-ended challenge |
-
-{: .note }
-> The Grimoire Vault exercise depends on files pre-staged by the instructors at `/scratch/shared/rf_bootcamp_2026/grimoire/`. You will copy them to your home directory in The Scroll Transfer room first.
