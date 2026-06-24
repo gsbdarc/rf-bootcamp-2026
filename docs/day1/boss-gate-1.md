@@ -31,7 +31,7 @@ You are already SSH'd onto the Yens. Create a personal working directory and cop
 
 ```bash
 mkdir /scratch/shared/$USER/boss1
-cp -r /scratch/shared/rf_bootcamp_2026/boss1/ /scratch/shared/$USER/boss1/
+cp -r /scratch/shared/rf-bootcamp-2026/boss1/ /scratch/shared/$USER/boss1/
 ```
 
 `-r` means recursive — copies the entire directory, just like `scp -r` in the Scroll Transfer room.
