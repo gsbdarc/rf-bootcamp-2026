@@ -63,14 +63,32 @@
 }
 .quest-check.done { text-decoration: line-through; color: #999; }
 
-/* ── Dungeon entrance — 2×2 floor card grid ── */
-.floor-grid {
+/* ── Dungeon entrance — floors left, skills panel right ── */
+.dungeon-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: 1.5rem;
   margin: 1.5rem 0;
+  align-items: start;
 }
-@media (max-width: 600px) { .floor-grid { grid-template-columns: 1fr; } }
+@media (max-width: 700px) { .dungeon-layout { grid-template-columns: 1fr; } }
+
+.floor-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.skills-panel {
+  border: 1px solid var(--border-color, #dde);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  background: var(--sidebar-color, #f8f9fa);
+  font-size: 0.9em;
+}
+.skills-panel h4 { margin-top: 0; font-size: 0.95em; color: #444; }
+.skills-panel ul { margin: 0.5rem 0 0; padding-left: 1.2rem; }
+.skills-panel li { margin-bottom: 0.45rem; color: #555; line-height: 1.4; }
 
 .floor-card {
   border: 1px solid var(--border-color, #dde);
