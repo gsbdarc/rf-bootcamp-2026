@@ -37,7 +37,7 @@ ls /scratch/shared/SUNetID/grimoire/fire/    # should show your fire spells
 ```
 
 {: .note }
-> 💡 The Yens use a **shared file system** — every login node (yen1–yen5) sees the same `/home` and `/scratch`. You copy once and the file is everywhere on the cluster simultaneously. No need to copy again if you switch nodes.
+> 💡 The Yens use a **shared file system** — every Yen server (yen1–yen5) sees the same `/home` and `/scratch`. You copy once and the file is everywhere on the cluster simultaneously. No need to copy again if you switch nodes.
 
 <label class="quest-check"><input type="checkbox" data-room="d1-scroll-transfer" data-key="main"> Main Quest complete</label>
 

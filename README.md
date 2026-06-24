@@ -179,21 +179,15 @@ rclone copy /scratch/shared/rf_bootcamp_2026/grimoire.zip <shared-space on G dri
 - Copy the shareable link
 
 **3. Share on Day 1:**
-Paste the Google Drive link in the class chat when students reach the Grimoire Vault room. They download and unzip on their local machine before SSHing to the Yens.
-
-> The download link also needs to be added to the Grimoire Vault page (`docs/day1/grimoire-vault.md`) before class — search for `YOUR_GDRIVE_LINK` and replace it.
+The download link is already embedded in the course site (`docs/day1/grimoire-vault.md` and `docs/index.md`). Students download from Google Drive to their laptops, unzip locally, and SCP their sorted grimoire to their own scratch folder — no instructor staging on the Yens required.
 
 ---
 
 ### Before Day 1 — Yens staging
 
-Stage the grimoire and Boss Gate vault on the Yens:
+Stage the Boss Gate 1 vault (hidden spell files):
 
 ```bash
-# Copy grimoire to shared scratch for the Scroll Transfer exercise
-cp -r grimoire/ /scratch/shared/rf_bootcamp_2026/grimoire/
-
-# Stage the Boss Gate 1 vault (hidden spell files)
 # Place the target file in: /scratch/shared/rf_bootcamp_2026/vault/
 ```
 
