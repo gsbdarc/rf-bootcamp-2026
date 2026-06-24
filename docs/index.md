@@ -9,9 +9,7 @@ permalink: /
 
 *You stand at the entrance of an ancient tower. Four floors rise above you, each sealed with an Archmage's crest. Somewhere inside, the secrets of computational research await — CLI runes carved into stone walls, SLURM forges humming in the depths, GPU engines blazing on the highest floor.*
 
-*You are a pre-doctoral researcher. You have four days.*
-
-{: .warning }
+{: .important }
 > **Day 1 — Do this first**
 >
 > 1. **Fork this repo** — click **Fork** in the top-right corner of the [GitHub page](https://github.com/gsbdarc/rf-bootcamp-2026) to create your own copy
@@ -20,16 +18,15 @@ permalink: /
 >
 > Your site is your quest log for the entire course. Keep it open — every room, exercise, and leaderboard submission happens here.
 
-{: .important }
-> **How the dungeon works**
->
-> Each floor corresponds to one day of the bootcamp. Every floor has **rooms** — enter each room, complete the **Main Quest**, and move to the next.
->
-> Finished early? Look for **Side Quests** — optional deeper challenges that unlock a named **Weapon** (a skill you carry for the rest of the course). Weapons compound: what you earn in Day 1 pays off in Day 3.
->
-> Each floor ends with a **Boss Gate**: a capstone challenge you submit by committing your work to your fork on GitHub. Push your commit → the grader runs → the next floor unlocks on your personal site.
->
-> Every completed main quest or side quest adds to your **Quest Log**. Your total drives your **Level** (shown in the widget, bottom-left). Complete every quest → 73/73 → Level 10 Archmage. The leaderboard ranks by level.
+**How the dungeon works**
+
+Each floor corresponds to one day of the bootcamp. Every floor has **rooms** — enter each room, complete the **Main Quest**, and move to the next.
+
+Finished early? Look for **Side Quests** — optional deeper challenges that unlock a named **Weapon** (a skill you carry for the rest of the course). Weapons compound: what you earn in Day 1 pays off in Day 3.
+
+Each floor ends with a **Boss Gate**: a capstone challenge you submit by committing your work to your fork on GitHub. Push your commit → the grader runs → the next floor unlocks on your personal site.
+
+Every completed main quest or side quest adds to your **Quest Log**. Your total drives your **Level** (shown in the widget, bottom-left). Complete every quest → 73/73 → Level 10 Archmage. The leaderboard ranks by level.
 
 ---
 
