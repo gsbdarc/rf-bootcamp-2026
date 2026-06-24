@@ -53,7 +53,7 @@ Your laptop
 │  ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐         │
 │  │ yen1  │ │ yen2  │ │ yen3  │ │ yen4  │ │ yen5  │         │
 │  └───────┘ └───────┘ └───────┘ └───────┘ └───────┘         │
-│  256 cores · ~1 TB RAM each · per-user limits enforced      │
+│  many cores · hundreds of GB RAM · per-user limits enforced │
 │                         │                                   │
 │                    scheduler (Day 3)                        │
 │                         │                                   │
@@ -77,7 +77,7 @@ Your laptop
 
 ![Server hardware diagram showing CPU, cores, and RAM — Yen1 has 256 cores]({{ "/assets/images/server-hardware-cpu-ram.png" | relative_url }})
 
-The **CPU** is the processor chip. **Cores** are the individual workers inside it — each core runs instructions independently, which is what makes parallel work possible. **RAM** holds the data the CPU is actively using. Each Yen has 256 of those cores and around 1 TB of RAM.
+The **CPU** is the processor chip. **Cores** are the individual workers inside it — each core runs instructions independently, which is what makes parallel work possible. **RAM** holds the data the CPU is actively using. The Yen servers vary in size — see the [current specs on RCPedia](https://rcpedia.stanford.edu/_getting_started/yen-servers/#overview-of-the-yen-computing-infrastructure) for details.
 
 ---
 
