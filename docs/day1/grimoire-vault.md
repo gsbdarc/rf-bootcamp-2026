@@ -121,10 +121,21 @@ cp */*_healing_*.spell healing/
 
 **Step 6 — Verify**
 
+The `|` character is called a **pipe**. It takes the output of one command and feeds it as input to the next. `wc -l` counts lines — so `ls fire/ | wc -l` asks: *list the files in fire/, then count how many lines that produces.*
+
 ```bash
 ls fire/ | wc -l      # count fire spells
 ls ice/ | wc -l       # count ice spells
-# all 5 counts should sum to ~300
+ls lightning/ | wc -l
+ls earth/ | wc -l
+ls wind/ | wc -l
+# all 5 counts should sum to 300
+```
+
+You can also count everything at once:
+
+```bash
+ls */*.spell | wc -l  # total spells across all element folders
 ```
 
 ---
