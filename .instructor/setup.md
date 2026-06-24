@@ -12,8 +12,11 @@ Students download the grimoire zip to their laptops at the start of Day 1 (Grimo
 
 ```bash
 # On the Yens
-cd /scratch/shared/rf_bootcamp_2026/
-python /path/to/scripts/generate_grimoire.py --seed 2026 --count 300
+cd /scratch/shared
+git clone https://github.com/gsbdarc/rf-bootcamp-2026.git
+cd rf-bootcamp-2026
+
+python scripts/generate_grimoire.py --seed 2026 --count 300
 # creates grimoire/ with ~300 .spell files named name_element_tier_type_mastery.spell
 
 zip -r grimoire.zip grimoire/
