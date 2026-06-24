@@ -24,7 +24,7 @@ Your grimoire is sorted, your spells are ready — now send them into the cluste
 Run this from your **laptop** (not on the Yens — open a new local terminal tab):
 
 ```bash
-scp -r ~/grimoire/ SUNetID@yen.stanford.edu:/scratch/shared/SUNetID/grimoire/
+scp -r ~/Desktop/grimoire/ SUNetID@yen.stanford.edu:/scratch/shared/SUNetID/grimoire/
 ```
 
 - `-r` means recursive — copies the whole directory tree
