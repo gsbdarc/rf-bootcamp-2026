@@ -22,11 +22,9 @@ At any point, open your Quest Log (bottom-left of any page), click **Sync to lea
 
 - **Command line:** `pwd`, `ls`, `cd`, `mkdir`, `cp`, `mv` — navigate any Unix system without clicking
 - **File wrangling:** sort hundreds of files with wildcards; think in patterns, not individual clicks
-- **SSH:** connect to the Stanford Yens cluster; understand login vs. compute nodes
-- **Cluster file system:** `/scratch`, quotas, modules — know where data lives and why
+- **SSH:** connect to the Stanford Yens cluster (17 nodes, 256 cores/node); understand interactive vs. scheduled compute
+- **Cluster file system:** `/home`, `/yen/projects`, `/scratch/shared` — know where data lives and why
 - **Git:** fork → branch → commit → push; version-control every project from day one
-- **JupyterHub:** run code on cluster hardware from a browser
-- **AI primer:** what a token, context window, and LLM actually are — before you touch one
 
 **Boss Gate 1:** Find a hidden spell file buried in the shared cluster file system. Commit it.
 
@@ -35,6 +33,7 @@ At any point, open your Quest Log (bottom-left of any page), click **Sync to lea
 ### Floor 2 — The Alchemist's Lab *(Day 2, ~3h 15min)*
 > *Transmutation in progress. Turn raw text into structured data. Keep your secrets secret.*
 
+- **JupyterHub:** run code on cluster hardware from a browser; connect your venv as a kernel
 - **Python environments:** create and manage `venv`; never break another project's dependencies again
 - **Stanford AI Playground:** why it exists, what data governance it provides, how it differs from a personal API key
 - **Secrets management:** `.env`, `python-dotenv`, `.gitignore` — what leaves your machine on every API call
@@ -68,7 +67,7 @@ At any point, open your Quest Log (bottom-left of any page), click **Sync to lea
 - **GPU landscape:** A30 / A40 / H200 on the Yens — what each is good for, how to request one
 - **GPU jobs:** `--gres=gpu:1`, `nvidia-smi` inside a job, why model size matters
 - **Ollama:** pull and run a local LLM on cluster hardware; the OpenAI-compatible interface
-- **vLLM and NIM:** the production-grade local serving stack; when to graduate from Ollama
+- **Local vs. cloud APIs:** Ollama (on Yens) vs. Stanford AI Playground vs. third-party — same Python code, different `base_url`; privacy and cost trade-offs
 - **Privacy and data governance:** the 3-bucket rule (public / restricted / PII); when cloud APIs are off-limits; classify your own research datasets
 - **Agent failure modes:** hallucination at scale, runaway loops, prompt injection, irreversibility — name them before they appear in your pipeline
 
@@ -143,7 +142,7 @@ The grader checks that the files exist and contain valid data — it does not gr
 ## Leaderboard
 
 The leaderboard at `/leaderboard/` ranks students by:
-1. **Level** — each completed main quest or side quest earns 1 XP; XP total determines level (max Level 10 — Archmage at 78 XP)
+1. **Level** — each completed main quest or side quest earns 1 XP; XP total determines level (max Level 10 — Archmage at 73 XP)
 2. **Boss Gates cleared** (tiebreaker) — everyone should reach 4
 
 To update your position: open the **Quest Log** widget (bottom-left of any dungeon page) → **Sync to leaderboard** → save `quest_log.json` to your repo root → commit and push. The grader updates your ranking automatically.
@@ -152,13 +151,53 @@ To update your position: open the **Quest Log** widget (bottom-left of any dunge
 
 Every room has optional **Side Quests** — one-line challenges you figure out yourself (no walkthrough). Completing one earns a named **Weapon**: a skill that pays off later in the course.
 
-You don't need to complete any side quests to pass Boss Gates. But every main quest and side quest earns **XP**, and XP drives your **Level**. All main quests only → 34 XP → Level 4 Journeyman. Every side quest complete → 78 XP → Level 10 Archmage, fully equipped researcher.
+You don't need to complete any side quests to pass Boss Gates. But every main quest and side quest earns **XP**, and XP drives your **Level**. All main quests only → Level 4 Journeyman. Every side quest complete → 73 XP → Level 10 Archmage, fully equipped researcher.
 
 ---
 
-## Instructor Notes
+## Instructor Setup
 
-- Grimoire files for Day 1: on the Yens, run `python scripts/generate_grimoire.py --seed 2026 --count 300`, then `mv grimoire/ /scratch/shared/rf_bootcamp_2026/grimoire/`
-- The main course site (`gsbdarc.github.io/rf-bootcamp-2026`) is read-only reference — students work on their own forks
-- `docs/_data/progress.yml` tracks which floors are unlocked; the grader commits updates automatically
-- Grader source: `scripts/check_boss_gates.py` — no external dependencies, stdlib only
+### Before Day 1 — Grimoire
+
+Students download the grimoire zip directly to their laptops at the start of Day 1 (Grimoire Vault exercise). Generate and host it before class:
+
+**1. Generate the grimoire:**
+```bash
+git clone https://github.com/gsbdarc/rf-bootcamp-2026.git
+cd rf-bootcamp-2026
+python scripts/generate_grimoire.py --seed 2026 --count 300
+# creates grimoire/ with ~300 .spell files
+zip -r grimoire.zip grimoire/
+```
+
+**2. Upload to Google Drive:**
+- Upload `grimoire.zip` to a shared Drive folder
+- Set sharing to **Anyone with the link → Viewer**
+- Copy the shareable link
+
+**3. Share on Day 1:**
+Paste the Google Drive link in the class chat when students reach the Grimoire Vault room. They download and unzip on their local machine before SSHing to the Yens.
+
+> The download link also needs to be added to the Grimoire Vault page (`docs/day1/grimoire-vault.md`) before class — search for `YOUR_GDRIVE_LINK` and replace it.
+
+---
+
+### Before Day 1 — Yens staging
+
+Stage the grimoire and Boss Gate vault on the Yens:
+
+```bash
+# Copy grimoire to shared scratch for the Scroll Transfer exercise
+cp -r grimoire/ /scratch/shared/rf_bootcamp_2026/grimoire/
+
+# Stage the Boss Gate 1 vault (hidden spell files)
+# Place the target file in: /scratch/shared/rf_bootcamp_2026/vault/
+```
+
+---
+
+### General notes
+
+- The main course site (`gsbdarc.github.io/rf-bootcamp-2026`) is the read-only instructor reference — students work on their own forks
+- `docs/_data/progress.yml` tracks which floors are unlocked; the grader commits updates automatically on each student's fork
+- Grader source: `scripts/check_boss_gates.py` — stdlib only, no dependencies
