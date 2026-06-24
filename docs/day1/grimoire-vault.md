@@ -51,14 +51,18 @@ What elements do you see? What patterns are there? What would make a logical org
 
 **Step 3 — Plan: decide on a strategy**
 
-*Class discussion — how would you organize these files?*
+*Class discussion — how would you organize these files? Raise your hand.*
 
-Options to consider:
+<details>
+<summary>Options to consider (expand after discussion)</summary>
+
 - Group by **element** (`fire/`, `ice/`, `lightning/`, `earth/`, `wind/`)
 - Group by **tier** (`tier1/`, `tier2/`, … `tier5/`)
 - Group by **type** (`offensive/`, `defensive/`, `utility/`, `healing/`)
 
 We will go with **element** — it is the most natural grouping for a spell archive and maps cleanly to the filename structure.
+
+</details>
 
 ---
 
