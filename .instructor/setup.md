@@ -76,19 +76,12 @@ chmod 644 /scratch/shared/rf-bootcamp-2026/boss1/*.spell
 
 ---
 
-### 3 — Verify student Yens access
-
-All students need a SUNetID and working SSH access to `yen.stanford.edu`. Confirm with the cohort's PI or DARC before Day 1.
-
----
-
 ## Day-of checklist
 
 - [ ] Grimoire zip is accessible at the Google Drive link (test the download in a browser)
 - [ ] `/scratch/shared/rf-bootcamp-2026/boss1/` has 51 files, readable by all
 - [ ] Signature spell exists: `void_arcane_6_legendary_archmage.spell`
 - [ ] Signature string inside it: `SIGNATURE: ARCHMAGE-SEAL-7734`
-- [ ] Students can SSH to `yen.stanford.edu` (test with one student before class starts)
 
 ---
 
