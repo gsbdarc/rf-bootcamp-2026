@@ -6,52 +6,145 @@ nav_order: 10
 permalink: /day1/boss-gate-1/
 ---
 
-# Boss Gate 1
+# Boss Gate 1: The Archmage's Seal
 
-*Iron doors. A glowing crest — the Archmage's seal — pulses cold blue across the stone. The inscription burns into view: "Prove you can find what is hidden, and leave a record of your discovery." Somewhere in the depths of `/scratch`, buried among hundreds of decoy files, a single spell bears the Archmage's true signature. The passage to Floor 2 will not open until you surface it.*
+<div data-room-id="d1-boss-gate-1"></div>
+
+*Iron doors. A glowing crest — the Archmage's seal — pulses cold blue across the stone.*
+
+*"You have learned to move. You have learned to sort. You have learned to reach across the wire into machines far more powerful than your own. Now prove it."*
+
+*In the Archmage's staging vault, fifty-one spell files lie unsorted. Fifty belong to the five known elements. One does not. It bears a seal. Find it. Read it. Commit the proof. The gate does not open until your push lands.*
 
 ---
 
 ## 🔑 The Challenge
 
-{: .boss }
-> **Boss Battle — The Archmage's Signature**
->
-> A single spell file bearing the Archmage's signature is hidden somewhere in the vault:
->
-> ```
-> /scratch/shared/rf_bootcamp_2026/vault/
-> ```
->
-> Find the file. Its name alone is not enough — read its contents to find the signature string inside.
->
-> **Submit your answer:**
->
-> 1. Create a file called `signature_spell.txt` in your repo containing:
->    - The full path to the spell file
->    - The signature string from its contents
-> 2. Commit and push to your fork:
->
-> ```bash
-> git add signature_spell.txt
-> git commit -m "Boss Gate 1: Archmage signature found"
-> git push
-> ```
->
-> That commit is your key. No push, no exit.
-
-{: .tip }
-> 💡 **Hint:** You have `find`, `grep`, and pipes. You do not need Python. Think about what makes this file different from the other 300.
+{: .important }
+> **Quest:** Navigate to the vault, sort the spells by element, find the outlier, read its seal, and push the proof to your GitHub fork.
 
 ---
 
-<label class="quest-check"><input type="checkbox" data-room="d1-boss-gate" data-key="commit"> Committed and pushed `signature_spell.txt`</label>
+### Step 1 — Create your workspace in scratch
+
+You are already SSH'd onto the Yens. Create a personal working directory and copy the vault into it:
+
+```bash
+mkdir /scratch/shared/$USER/boss1
+cp -r /scratch/shared/rf_bootcamp_2026/boss1/ /scratch/shared/$USER/boss1/
+```
+
+`-r` means recursive — copies the entire directory, just like `scp -r` in the Scroll Transfer room.
+
+Navigate in and count what you have:
+
+```bash
+cd /scratch/shared/$USER/boss1
+ls | wc -l          # how many spell files are there?
+ls | head -10       # look at the naming pattern
+```
+
+---
+
+### Step 2 — Sort the vault by element
+
+The filename format is `name_ELEMENT_tier_type_mastery.spell`. Create directories for the five standard elements and move the spells into them:
+
+```bash
+mkdir fire ice lightning earth wind
+
+mv *_fire_*.spell fire/
+mv *_ice_*.spell ice/
+mv *_lightning_*.spell lightning/
+mv *_earth_*.spell earth/
+mv *_wind_*.spell wind/
+```
+
+---
+
+### Step 3 — Count and find what remains
+
+Verify your work:
+
+```bash
+ls fire/ | wc -l
+ls ice/ | wc -l
+ls lightning/ | wc -l
+ls earth/ | wc -l
+ls wind/ | wc -l
+```
+
+Now check what is still in the working directory — what wildcards could not sort:
+
+```bash
+ls *.spell
+```
+
+One file does not belong to any of the five elements. That is the Archmage's signature spell.
+
+---
+
+### Step 4 — Read the seal
+
+```bash
+cat <the-remaining-filename>.spell
+```
+
+`cat` displays the contents of a file. The file contains a line beginning with `SIGNATURE:` — that string is the Archmage's seal. Copy it exactly.
+
+---
+
+### Step 5 — Record the proof in your repo
+
+Navigate to your cloned repository on the Yens:
+
+```bash
+cd ~/rf-bootcamp-2026/
+```
+
+Create a file called `signature_spell.txt` with two lines:
+
+```bash
+nano signature_spell.txt
+```
+
+Write exactly:
+
+```
+Spell found: <the-filename-you-found>.spell
+Signature: <the-seal-string-from-the-file>
+```
+
+Save with `Ctrl+O`, exit with `Ctrl+X`.
+
+---
+
+### Step 6 — Push to your fork
+
+```bash
+git add signature_spell.txt
+git commit -m "Boss Gate 1: Archmage signature found"
+git push
+```
+
+Open your GitHub fork in a browser and confirm `signature_spell.txt` appears. That commit is your key.
+
+{: .note }
+> If `git push` asks for credentials, your token may not be cached on the Yens. Ask an instructor.
 
 ---
 
 ## 🧠 Skills This Gate Tests
 
-- You can `ssh` into the Yens cluster and operate as a remote explorer
-- You can wield `find` and `grep` to hunt through a forest of directories for one specific target
-- You can crack open files from the command line and read what's inside
-- You own the complete git spellchain: add → commit → push to your fork
+| Skill | Where you learned it |
+|-------|---------------------|
+| `ssh` to a remote server | The SSH Gate |
+| `mkdir` to create directories | The Command Spire |
+| `cd` to navigate the file system | The Command Spire |
+| `cp -r` to copy a directory | The Command Spire (cp) + Scroll Transfer (-r flag) |
+| `ls \| wc -l` to count files | The Grimoire Vault |
+| `mv *_element_*` wildcard sorting | The Grimoire Vault |
+| `cat` to read a file's contents | (new — but you know `ls` and `head`) |
+| `git add / commit / push` | The Repository |
+
+<label class="quest-check"><input type="checkbox" data-room="d1-boss-gate-1" data-key="main"> Boss Gate 1 complete</label>

@@ -55,14 +55,15 @@ def count_quest_log():
 # ── Boss Gate checks ──────────────────────────────────────────────────────────
 
 def check_gate_1():
-    """Boss Gate 1: signature_spell.txt contains a .spell filename."""
+    """Boss Gate 1: signature_spell.txt contains a .spell filename (anywhere in file)."""
     candidates = list(REPO_ROOT.glob("**/signature_spell.txt"))
     if not candidates:
         return False, "signature_spell.txt not found in your repo"
     content = candidates[0].read_text().strip()
-    if not content.endswith(".spell"):
-        return False, f"signature_spell.txt must contain a .spell filename, got: {content!r}"
-    return True, f"Spell found: {content}"
+    spell_line = next((l for l in content.splitlines() if l.strip().endswith(".spell")), None)
+    if not spell_line:
+        return False, f"signature_spell.txt must include a line ending in .spell, got: {content!r}"
+    return True, f"Spell found: {spell_line.strip()}"
 
 
 def check_gate_2():

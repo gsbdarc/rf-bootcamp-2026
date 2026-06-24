@@ -1,0 +1,108 @@
+# Instructor Setup — RF Coding Bootcamp 2026
+
+Run these steps before class. Everything here is one-time per cohort unless noted.
+
+---
+
+## Before Day 1
+
+### 1 — Generate and host the Grimoire
+
+Students download the grimoire zip to their laptops at the start of Day 1 (Grimoire Vault room).
+
+```bash
+# On the Yens
+cd /scratch/shared/rf_bootcamp_2026/
+python /path/to/scripts/generate_grimoire.py --seed 2026 --count 300
+# creates grimoire/ with ~300 .spell files named name_element_tier_type_mastery.spell
+
+zip -r grimoire.zip grimoire/
+ml rclone
+rclone copy grimoire.zip gdrive:<your-shared-drive-folder>/
+```
+
+Then in Google Drive:
+- Open `grimoire.zip` → Share → **Anyone with the link → Viewer**
+- Copy the link
+
+Update the link in two places if it changes:
+- `docs/day1/grimoire-vault.md` — the download button
+- `docs/index.md` — the entrance page reference
+
+Current link: `https://drive.google.com/file/d/11ngowIAXgm2VK-_78Q-OdNrtRaHXX4Ej/view?usp=drive_link`
+
+---
+
+### 2 — Stage Boss Gate 1 vault in scratch
+
+The boss gate challenge lives at `/scratch/shared/rf_bootcamp_2026/boss1/`.
+
+**Create 50 standard spell files (10 per element):**
+
+```bash
+mkdir -p /scratch/shared/rf_bootcamp_2026/boss1/
+cd /scratch/shared/rf_bootcamp_2026/boss1/
+
+# Pull 10 spells from each element out of the generated grimoire
+cp /scratch/shared/rf_bootcamp_2026/grimoire/fire/*.spell . 2>/dev/null | head -10
+# OR create them manually — any file matching *_fire_*.spell etc. will work
+
+# Quick shortcut: copy 10 per element from the grimoire
+for elem in fire ice lightning earth wind; do
+  ls /scratch/shared/rf_bootcamp_2026/grimoire/${elem}/*.spell | head -10 | xargs -I{} cp {} .
+done
+```
+
+**Create the signature spell:**
+
+```bash
+cat > /scratch/shared/rf_bootcamp_2026/boss1/void_arcane_6_legendary_archmage.spell << 'EOF'
+SIGNATURE: ARCHMAGE-SEAL-7734
+EOF
+```
+
+Verify:
+
+```bash
+ls /scratch/shared/rf_bootcamp_2026/boss1/ | wc -l   # should be 51
+ls /scratch/shared/rf_bootcamp_2026/boss1/ | grep arcane  # should show the signature spell
+```
+
+**Set permissions so all students can read but not modify:**
+
+```bash
+chmod 755 /scratch/shared/rf_bootcamp_2026/boss1/
+chmod 644 /scratch/shared/rf_bootcamp_2026/boss1/*.spell
+```
+
+---
+
+### 3 — Verify student Yens access
+
+All students need a SUNetID and working SSH access to `yen.stanford.edu`. Confirm with the cohort's PI or DARC before Day 1.
+
+---
+
+## Day-of checklist
+
+- [ ] Grimoire zip is accessible at the Google Drive link (test the download in a browser)
+- [ ] `/scratch/shared/rf_bootcamp_2026/boss1/` has 51 files, readable by all
+- [ ] Signature spell exists: `void_arcane_6_legendary_archmage.spell`
+- [ ] Signature string inside it: `SIGNATURE: ARCHMAGE-SEAL-7734`
+- [ ] Students can SSH to `yen.stanford.edu` (test with one student before class starts)
+
+---
+
+## Solution keys
+
+See `.instructor/boss-gate-1.key.md` for the full step-by-step solution to Boss Gate 1.
+
+---
+
+## Grader notes
+
+The auto-grader (`scripts/check_boss_gates.py`) runs on each student's GitHub Actions after every push. For Boss Gate 1 it checks:
+- `signature_spell.txt` exists in the repo
+- At least one line in the file ends with `.spell`
+
+It does **not** check the signature string value — any correctly named spell file satisfies the grader.

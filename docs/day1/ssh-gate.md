@@ -28,6 +28,9 @@ Your laptop is fine for writing code and running small tests. But research compu
 
 The Yens are not a luxury. They are the right tool for serious research computation.
 
+{: .note }
+> *"My regression on the full sample took 14 hours. My laptop died at hour 6. I lost everything. Two days later I reran it on the Yens and went to sleep. It finished while I was gone."* — Ben
+
 ---
 
 ## 🖊️ What Is a Remote Server?

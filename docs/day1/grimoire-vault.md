@@ -68,7 +68,7 @@ Before using the terminal, open **Finder** (Mac) or **File Explorer** (Windows).
 
 Now imagine doing that for all 300 files across 5 elements. How long would it take? What happens when you get 10,000 files next year?
 
-That is exactly what the terminal solves.
+That is exactly what the terminal solves. This is the first skill you will use in real research — and you will reach for it again every time a new dataset arrives.
 
 ---
 

@@ -29,6 +29,13 @@ Before you touch a single data file, you need to know the terrain — what's you
 /scratch/shared/SUNetID/  ← scratch space (large, fast, NOT backed up)
 ```
 
+{: .note }
+> **How to organize a research project on the Yens:**
+> - Raw data → `/yen/projects/your_project/data/` — shared with your PI, backed up, never overwrite
+> - Scripts → your git repo in `/home/users/SUNetID/` or `/yen/projects/`
+> - Outputs and scratch work → `/scratch/shared/SUNetID/results/` — fast, but not backed up; copy anything you want to keep
+> - Never mix raw data and outputs in the same folder — future-you will not know which is which
+
 **Check your quota:**
 ```bash
 gsbquota                  # shows home and scratch usage for your account
