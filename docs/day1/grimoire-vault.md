@@ -53,7 +53,7 @@ What elements do you see? What patterns are there? What would make a logical org
 
 *Class discussion — how would you organize these files? Raise your hand.*
 
-<details>
+<details markdown="1">
 <summary>Options to consider (expand after discussion)</summary>
 
 - Group by **element** (`fire/`, `ice/`, `lightning/`, `earth/`, `wind/`)

@@ -62,7 +62,7 @@ You have been working on your research projects for about a month. Before we go 
 - Where do they live right now?
 - What happens when you need to find something from three weeks ago?
 
-<details>
+<details markdown="1">
 <summary>One example structure (expand after discussion)</summary>
 
 Organizing files is not a rule for its own sake — it is what makes your work reproducible, shareable, and recoverable when something goes wrong. Here is one common structure for a research project:
