@@ -28,3 +28,4 @@ Seven chambers stand between you and the capstone. Each one unlocks a different 
 | [The Grand Hall](grand-hall/) | 💬🖊️💻 Discussion | Apply the 3-bucket privacy rule to your own real datasets |
 | [The Trap Garden](trap-garden/) | 💬 Discussion | Spot LLM agent failure modes before they blow up your pipeline |
 | [Boss Gate 4](boss-gate-4/) | 🔑 Capstone | Full stack: SLURM → GPU → local LLM → documented |
+| [The Research Guild](research-guild/) | 🏛️ Community | Getting help, Slack channel, and staying connected after the bootcamp |

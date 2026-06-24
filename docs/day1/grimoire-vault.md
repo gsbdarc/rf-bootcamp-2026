@@ -23,7 +23,9 @@ The vault won't organize itself. One wildcard pattern can move sixty files in th
 
 **Step 1 — Download the grimoire**
 
-Your instructor will provide a download link. Save `grimoire.zip` to your laptop and unzip it:
+**[⬇ Download grimoire.zip](https://drive.google.com/file/d/11ngowIAXgm2VK-_78Q-OdNrtRaHXX4Ej/view?usp=drive_link)**
+
+Save `grimoire.zip` to your laptop and unzip it:
 
 ```bash
 unzip grimoire.zip

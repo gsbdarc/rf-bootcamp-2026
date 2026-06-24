@@ -11,6 +11,15 @@ permalink: /
 
 *You are a pre-doctoral researcher. You have four days.*
 
+{: .warning }
+> **Day 1 — Do this first**
+>
+> 1. **Fork this repo** — click **Fork** in the top-right corner of the [GitHub page](https://github.com/gsbdarc/rf-bootcamp-2026) to create your own copy
+> 2. **Enable GitHub Pages** on your fork: Settings → Pages → Source → **GitHub Actions** → Save
+> 3. **Open your personal dungeon site:** `https://YOUR-USERNAME.github.io/rf-bootcamp-2026/`
+>
+> Your site is your quest log for the entire course. Keep it open — every room, exercise, and leaderboard submission happens here.
+
 {: .important }
 > **How the dungeon works**
 >
@@ -20,7 +29,7 @@ permalink: /
 >
 > Each floor ends with a **Boss Gate**: a capstone challenge you submit by committing your work to your fork on GitHub. Push your commit → the grader runs → the next floor unlocks on your personal site.
 >
-> Every completed main quest or side quest earns **XP**. XP accumulates into your **Level** (shown in the widget, bottom-left). All main quests → 34 XP → Level 4 Journeyman. Complete every side quest → 78 XP → Level 10 Archmage. The leaderboard ranks by level.
+> Every completed main quest or side quest earns **XP**. XP accumulates into your **Level** (shown in the widget, bottom-left). Complete every quest → 73 XP → Level 10 Archmage. The leaderboard ranks by level.
 
 ---
 
@@ -31,13 +40,13 @@ permalink: /
 <div class="floor-grid">
   <div class="floor-card{% unless unlocked contains 1 %} floor-card-locked{% endunless %}">
     <h3><a href="{{ '/day1/' | relative_url }}">Floor 1 — The Gatehouse</a>{% unless unlocked contains 1 %} 🔒{% endunless %}</h3>
-    <p>Levels 1–3 &nbsp;·&nbsp; 9 rooms + Boss Gate</p>
-    <p>CLI &middot; SSH &middot; Yens file system &middot; JupyterHub &middot; Git &middot; AI primer</p>
+    <p>Levels 1–3 &nbsp;·&nbsp; 6 rooms + Boss Gate</p>
+    <p>CLI &middot; SSH &middot; Yens file system &middot; Git</p>
   </div>
   <div class="floor-card{% unless unlocked contains 2 %} floor-card-locked{% endunless %}">
     <h3><a href="{{ '/day2/' | relative_url }}">Floor 2 — The Alchemist's Lab</a>{% unless unlocked contains 2 %} 🔒{% endunless %}</h3>
     <p>Levels 4–6 &nbsp;·&nbsp; 10 rooms + Boss Gate</p>
-    <p>Virtual envs &middot; AI Playground &middot; Security &middot; Claude Code &middot; LLMs &middot; Screen</p>
+    <p>JupyterHub &middot; Virtual envs &middot; AI Playground &middot; Security &middot; Claude Code &middot; LLMs &middot; Screen</p>
   </div>
   <div class="floor-card{% unless unlocked contains 3 %} floor-card-locked{% endunless %}">
     <h3><a href="{{ '/day3/' | relative_url }}">Floor 3 — The SLURM Mines</a>{% unless unlocked contains 3 %} 🔒{% endunless %}</h3>
@@ -47,7 +56,7 @@ permalink: /
   <div class="floor-card{% unless unlocked contains 4 %} floor-card-locked{% endunless %}">
     <h3><a href="{{ '/day4/' | relative_url }}">Floor 4 — The GPU Fortress</a>{% unless unlocked contains 4 %} 🔒{% endunless %}</h3>
     <p>Levels 9–10 &nbsp;·&nbsp; 7 rooms + Boss Gate</p>
-    <p>H200 GPU jobs &middot; Ollama &middot; vLLM &middot; Privacy &middot; Agent risks</p>
+    <p>H200 GPU jobs &middot; Ollama &middot; Local vs cloud API &middot; Privacy &middot; Agent risks</p>
   </div>
 </div>
 
@@ -61,9 +70,11 @@ permalink: /
 
 ## The Grimoire
 
-The dungeon's first trial involves a vault of spell files — hundreds of them, scattered and unsorted. Your instructor will give you a download link before Day 1.
+The dungeon's first trial involves a vault of spell files — hundreds of them, scattered and unsorted.
 
-Save `grimoire.zip` to your laptop before class. You'll unzip and sort it on your laptop in [The Grimoire Vault]({{ '/day1/grimoire-vault/' | relative_url }}), then transfer your sorted copy to the Yens in [The Scroll Transfer]({{ '/day1/scroll-transfer/' | relative_url }}).
+**[⬇ Download grimoire.zip](https://drive.google.com/file/d/11ngowIAXgm2VK-_78Q-OdNrtRaHXX4Ej/view?usp=drive_link)**
+
+Save `grimoire.zip` to your laptop. You'll unzip and sort it on your laptop in [The Grimoire Vault]({{ '/day1/grimoire-vault/' | relative_url }}), then transfer your sorted copy to the Yens in [The Scroll Transfer]({{ '/day1/scroll-transfer/' | relative_url }}).
 
 **Spell file format:** `fireball_fire_3_offensive_meteor.spell`
 `name_element_tier_type_mastery`
@@ -89,4 +100,4 @@ A fully-equipped researcher who completes every side quest across all four floor
 | **Documentation** | Structure Sigil · Changelog Charm |
 | **GPU + local LLMs** | Smi Sight · Benchmark Blade · Model Menagerie · Modelfile Magic |
 
-All main quests → 34 XP → Level 4 Journeyman. Every side quest complete → 78 XP → Level 10 Archmage — fully equipped researcher.
+Complete every quest → 73 XP → Level 10 Archmage — fully equipped researcher.
