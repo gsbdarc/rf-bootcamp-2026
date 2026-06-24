@@ -61,37 +61,39 @@ def generate(output_dir: str, seed: int, target: int) -> None:
     random.seed(seed)
     os.makedirs(output_dir, exist_ok=True)
 
+    seen = set()
     files = []
+
+    def try_add(name, element, tier, spell_type):
+        mastery = MASTERIES[element]
+        filename = f"{name}_{element}_{tier}_{spell_type}_{mastery}.spell"
+        if filename not in seen:
+            seen.add(filename)
+            files.append((name, element, tier, spell_type, mastery))
 
     # Phase 1: one file per (element, tier, type) combo — ensures coverage
     for element in ELEMENTS:
         for tier in TIERS:
             for spell_type in TYPES:
-                name = random.choice(NAMES[element])
-                mastery = MASTERIES[element]
-                files.append((name, element, tier, spell_type, mastery))
+                try_add(random.choice(NAMES[element]), element, tier, spell_type)
 
-    # Phase 2: random fill to reach ~target (introduces variety + some duplicates)
-    while len(files) < target:
+    # Phase 2: random fill to reach target, skipping duplicates
+    attempts = 0
+    while len(files) < target and attempts < target * 20:
         element = random.choice(ELEMENTS)
-        tier = random.choice(TIERS)
-        spell_type = random.choice(TYPES)
-        name = random.choice(NAMES[element])
-        mastery = MASTERIES[element]
-        files.append((name, element, tier, spell_type, mastery))
+        try_add(random.choice(NAMES[element]), element, random.choice(TIERS), random.choice(TYPES))
+        attempts += 1
 
     # Phase 3: shuffle so files aren't element-clustered (that's the exercise)
     random.shuffle(files)
 
-    written = 0
     for name, element, tier, spell_type, mastery in files:
         filename = f"{name}_{element}_{tier}_{spell_type}_{mastery}.spell"
         path = os.path.join(output_dir, filename)
         with open(path, 'w') as f:
             f.write(f"element={element}\ntier={tier}\ntype={spell_type}\n")
-        written += 1
 
-    print(f"Generated {written} spell files in {output_dir}/")
+    print(f"Generated {len(files)} spell files in {output_dir}/")
     print(f"Seed: {seed}  (rerun with --seed {seed} to reproduce exactly)")
 
 
