@@ -108,7 +108,7 @@ whoami        # confirm you're logged in as yourself
 ```bash
 ls ~                              # your home directory on the Yens
 pwd                               # /home/users/SUNetID
-ls /scratch/shared/$USER          # your scratch space
+ls /scratch/shared/               # shared scratch — you will create your own folder here later
 ls /yen/projects/                 # shared project storage
 ```
 
