@@ -162,25 +162,6 @@ wc -l tier3_spells.txt             # how many tier-3 spells are there?
 
 ---
 
-**Bonus Task: Find the Rarest Combination**
-
-The filename format is `name_element_tier_type_mastery.spell`. Find the least common element + type combination across all 300 spells.
-
-The `cut` command splits each line on a delimiter and extracts specific fields. `sort` sorts lines alphabetically. `uniq -c` counts consecutive identical lines (so sort first). `sort -n` sorts numerically.
-
-```bash
-ls */*.spell | cut -d'_' -f2,4 | sort | uniq -c | sort -n
-```
-
-- `cut -d'_' -f2,4` — split on `_`, keep fields 2 (element) and 4 (type)
-- `sort` — group identical combos together
-- `uniq -c` — count each group
-- `sort -n` — sort by count, smallest first
-
-The rarest combinations appear at the top. What do you find?
-
----
-
 **Step 7 — Document: write a README**
 
 Always leave a note explaining what you did and why. Create a `README.md` in the grimoire folder:
@@ -211,3 +192,26 @@ This habit — documenting your organization decisions while they are fresh — 
 > You will transfer your sorted grimoire to the Yens in [The Scroll Transfer](../scroll-transfer/) room. Keep this directory — you need it there.
 
 <label class="quest-check"><input type="checkbox" data-room="d1-grimoire-vault" data-key="main"> Main Quest complete</label>
+
+---
+
+## 📦 Side Quest
+
+**Find the Rarest Combination**
+
+The filename format is `name_element_tier_type_mastery.spell`. Find the least common element + type combination across all 300 spells.
+
+The `cut` command splits each line on a delimiter and extracts specific fields. `sort` sorts lines alphabetically. `uniq -c` counts consecutive identical lines (so sort first). `sort -n` sorts numerically.
+
+```bash
+ls */*.spell | cut -d'_' -f2,4 | sort | uniq -c | sort -n
+```
+
+- `cut -d'_' -f2,4` — split on `_`, keep fields 2 (element) and 4 (type)
+- `sort` — group identical combos together
+- `uniq -c` — count each group
+- `sort -n` — sort by count, smallest first
+
+The rarest combinations appear at the top. What do you find?
+
+<label class="quest-check"><input type="checkbox" data-room="d1-grimoire-vault" data-key="side1"> Side Quest complete</label>
