@@ -25,28 +25,31 @@ Your `README.md` is a living document. It starts as a file inventory on Day 1 an
 
 **Theme:** Get oriented, get organized, get to the cluster.
 
-### Why This Bootcamp?
-- What is research computing, and why does it matter for pre-docs?
-- What is a server? How is it different from your laptop?
-- What is a terminal, and why do researchers use it?
-- How to be effective: habits that compound across a research career
+**Why this bootcamp?**
+What is research computing, a server, a terminal? How to be effective: habits that compound across a research career.
 
-### Concepts
-- The Unix file system: paths, permissions, directories
-- Shared vs dedicated compute: why the Yens cluster exists
-- Version control as a lab notebook: Git for reproducible research
-- Project organization: the first thing to do when a PI sends a data dump
+**The command line**
+Core navigation and file operations; wildcards and bulk operations.
+*Exercise:* `ls`, `cd`, `mkdir`, `mv`, `cp`, `rm`; rename 50 files with one wildcard command. Demo: the same task by hand vs. in the terminal — feel the difference.
 
-### Hands-on Exercises
-1. CLI navigation: `ls`, `cd`, `mkdir`, `mv`, `cp`, `rm`, `find`
-2. Bulk operations: rename 50 files with wildcards in one command (by hand vs in the terminal — same task, compare the experience)
-3. SSH into the Yens cluster
-4. Explore the cluster: file system layout, storage quotas, loading software modules
-5. File transfer: `scp` data between laptop and cluster
-6. Git: fork the bootcamp repo, clone it, make a commit, push
+**Staying organized in a research project**
+What to do when a PI sends a raw data dump: look first, decide on a strategy, execute, document.
+*Exercise:* Organize a messy SEC filing directory into a logical structure; write `README.md` describing what you did and why.
+
+**Remote access**
+SSH: log in to the Yens; cluster file system layout, storage quotas, software modules.
+*Exercise:* `ssh` into the Yens; explore `/home`, `/scratch`; `module load` a tool; compare environments.
+
+**File transfer**
+Moving data between your laptop and the cluster.
+*Exercise:* `scp` a file to the cluster and back; understand the shared `/scratch` filesystem.
+
+**Version control**
+Git as a lab notebook: fork → clone → commit → push.
+*Exercise:* Fork the bootcamp repo, clone it to the Yens, make a commit, push.
 
 ### 📁 Project Milestone — Day 1
-> Receive a raw dump of SEC filing files with no structure. Organize them into a logical directory layout. Write `README.md` describing what you did and why. Commit and push.
+> Organized project committed with `README.md` describing the file structure.
 
 ### 🔑 Boss Gate 1
 Organized project committed to GitHub.
@@ -57,28 +60,23 @@ Organized project committed to GitHub.
 
 **Theme:** From a Jupyter notebook to a working AI research pipeline.
 
-### Concepts
-- JupyterHub: notebooks vs. scripts, kernel setup, the Jupyter terminal
-- Python environments: virtual environments, `pip`, reproducibility
-- `$PATH`: how the shell finds programs; what `module load` and `venv activate` do to it
-- Stanford AI Playground: web GUI and API gateway; what leaves the cluster and to where
-- Tokens, costs, and context windows: the economics of every API call
-- AI coding agents at Stanford: data privacy and security, best practices *(30-min discussion block)*
-- Human vs. LLM: when AI helps, when humans win, how to validate at scale
+**JupyterHub & Python environments**
+Notebooks vs. scripts; virtual environments, `pip`, reproducibility; `$PATH` and how `module load` and `venv activate` change it.
+*Exercise:* Connect to JupyterHub; load modules and observe `$PATH`; create a venv, `pip install` packages, register a Jupyter kernel; write and run a script from the terminal.
 
-### Hands-on Exercises
-1. Connect to JupyterHub on the Yens; run first notebook cells; write a Python script and run it from the terminal
-2. Load and unload software modules; observe how `$PATH` changes before and after `source venv/bin/activate`
-3. Create a virtual environment; `pip install openai pydantic python-dotenv`; install a Jupyter kernel
-4. Explore the Stanford AI Playground web GUI (aitools.stanford.edu)
-5. Load the API key securely from `.env`; add `.env` to `.gitignore`; initialize an OpenAI-compatible client
-6. First API call: send one SEC Form 3 filing to the LLM, extract `insider_name` and `role`
-7. Add a Pydantic model; validate and serialize the LLM response to clean JSON
-8. Refactor notebook code into a `.py` script; run it from the terminal
-9. Discussion block *(30 min)*: AI coding agents at Stanford, data privacy and security, best practices; human vs. LLM decision framework
+**Stanford AI Playground**
+Stanford's gateway to frontier models (GPT-4, Claude, Llama, and more); web GUI and API gateway; what leaves the cluster and to where; tokens, costs, and context windows.
+*Exercise:* Explore the web GUI at aitools.stanford.edu; load an API key securely from `.env`; add `.env` to `.gitignore`; initialize an OpenAI-compatible client.
+
+**AI coding agents at Stanford** *(30-min discussion block)*
+Data privacy and security when using AI tools; what logs are kept; best practices for researchers.
+
+**Your first LLM pipeline**
+First API call; Pydantic structured output; moving from notebook to script.
+*Exercise:* Send one SEC Form 3 filing to the LLM API; extract `insider_name` and `role`; validate with a Pydantic model; serialize to JSON; refactor into a `.py` script.
 
 ### 📁 Project Milestone — Day 2
-> `scripts/extract_filing.py` added — processes one filing, returns validated JSON. `README.md` updated with pipeline description and how to run the script. Committed and pushed.
+> `scripts/extract_filing.py` added; processes one filing and returns validated JSON. `README.md` updated with pipeline description and how to run the script. Committed and pushed.
 
 ### 🔑 Boss Gate 2
 Working LLM extraction script pushed to GitHub, returning structured output.
@@ -89,22 +87,28 @@ Working LLM extraction script pushed to GitHub, returning structured output.
 
 **Theme:** Stop running big jobs on the shared kitchen — learn the scheduler.
 
-### Concepts
-- The kitchen analogy: CPU cores (burners), RAM (fridge), shared storage (warehouse), SLURM (head chef)
-- Resource estimation: measure wall time and memory before writing `#SBATCH` directives
-- Job lifecycle: submit → queue → run → complete → logs
-- Job arrays: one script, one `--array` flag, hundreds of inputs running in parallel
+**The kitchen analogy** *(30-min live demo + class participation)*
+What is a compute cluster; why shared resources need a scheduler; SLURM as head chef — stations, tickets, the queue.
+*Exercise:* Run `userload` and `htop`; watch live resource contention across the Yens; discuss what you see.
 
-### Hands-on Exercises
-1. Kitchen demo *(30-min live class participation)*: run `userload` and `htop`, watch live resource contention across the cluster
-2. Profile your Day 2 script: `time python extract_filing.py`, watch memory with `htop -u $USER`
-3. Profile a mystery script: monitor CPU and RAM simultaneously from a second terminal
-4. Write a SLURM batch script (`jobs/extract.sh`) with `#SBATCH` directives; submit with `sbatch`
-5. Monitor with `squeue`; audit completed jobs with `sacct`; cancel a job with `scancel`
-6. Convert to a job array: `#SBATCH --array=1-100`, one task per filing, collect all results
+**Resource estimation**
+Measure wall time and memory before writing a single `#SBATCH` directive.
+*Exercise:* `time python extract_filing.py`; watch memory with `htop -u $USER`; profile a mystery script from a second terminal — guess the `--time` and `--mem` before checking.
+
+**Writing and submitting a SLURM job**
+`#SBATCH` directives: time, memory, CPUs, email; `sbatch`, `squeue`, `sacct`, `scancel`; reading logs.
+*Exercise:* Write `jobs/extract.sh`; submit with `sbatch`; monitor with `squeue`; retrieve output with `sacct`; cancel a job.
+
+**Job arrays**
+One script, one `--array` flag, hundreds of inputs running in parallel.
+*Exercise:* Convert to a job array (`#SBATCH --array=1-100`); one task per filing; collect all results.
+
+**Documentation**
+Writing a README while the details are still fresh.
+*Exercise:* Update `README.md` with SLURM instructions and how to rerun the array.
 
 ### 📁 Project Milestone — Day 3
-> `jobs/extract.sh` (single job) and `jobs/array_extract.sh` (array job) added. Results from all filings in `results/`. `README.md` updated with SLURM instructions and how to rerun the array. Committed and pushed.
+> `jobs/extract.sh` and `jobs/array_extract.sh` added; results from all filings in `results/`; `README.md` updated with SLURM instructions. Committed and pushed.
 
 ### 🔑 Boss Gate 3
 Array job complete, results committed, README updated.
@@ -115,22 +119,24 @@ Array job complete, results committed, README updated.
 
 **Theme:** One job is a proof of concept. A pipeline is research.
 
-### Concepts
-- GPU tiers on the Yens: A30 / A40 / H200 — VRAM, use cases, when the queue wait is worth it
-- Local LLMs with Ollama: model weights run on cluster hardware, nothing leaves the Yens
-- The OpenAI-compatible API: swapping `base_url` is the only code change between all endpoints
-- LLM access pattern decision: local Ollama vs. Stanford AI Playground vs. third-party APIs
-- Agent failure modes: hallucination at scale, runaway loops, prompt injection, irreversibility
+**GPU computing on the Yens**
+GPU tiers: A30 / A40 / H200 — VRAM, use cases, when the queue wait is worth it; `--gres=gpu:1`.
+*Exercise:* Submit a GPU job to `yen-gpu4` (H200); verify with `nvidia-smi` and a PyTorch CUDA check.
 
-### Hands-on Exercises
-1. Submit a GPU job to `yen-gpu4` (H200); verify GPU access with `nvidia-smi` and a PyTorch CUDA check
-2. Pull `llama3.2:3b` with Ollama; start `ollama serve` in a `screen` session; confirm the server is running
-3. Swap `base_url` in your Day 2 script to point at the local Ollama server — same code, different endpoint
-4. Run the same 5 filings through both Playground and Ollama; save side-by-side in `results/comparison.csv`
-5. Class discussion: which model was more accurate? Which endpoint is appropriate for restricted data? When would you use each?
+**Local LLMs with Ollama**
+Model weights on cluster hardware; nothing leaves the Yens; the OpenAI-compatible API means the same code works everywhere.
+*Exercise:* Pull `llama3.2:3b`; `ollama serve` in a `screen` session; swap `base_url` in your Day 2 script — same code, local endpoint.
+
+**Comparing LLM access patterns**
+Local Ollama vs. Stanford AI Playground vs. third-party APIs — data residency, cost, model availability.
+*Exercise:* Run the same 5 filings through both Playground and Ollama; save side-by-side in `results/comparison.csv`.
+
+**Human vs. LLM & agent failure modes** *(discussion)*
+When AI helps and when humans win; hallucination at scale, runaway loops, prompt injection, irreversibility — name them before your pipeline does.
+*Exercise:* Review comparison results — where did the models disagree? What would it take to verify? What would you do differently if you were processing 10,000 filings?
 
 ### 📁 Project Milestone — Day 4
-> `results/comparison.csv` added (Playground vs. Ollama outputs side-by-side). `README.md` finalized — describes the full pipeline from raw data to GPU-powered extraction, both endpoints, and how to rerun everything. Committed and pushed.
+> `results/comparison.csv` added (Playground vs. Ollama outputs side-by-side). `README.md` finalized — full pipeline from raw data to GPU-powered extraction, both endpoints, how to rerun. Committed and pushed.
 
 ### 🔑 Boss Gate 4
 Full pipeline documented and pushed — raw data in, structured results out, README tells the story.
