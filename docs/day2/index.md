@@ -19,14 +19,11 @@ floor: 2
 
 | Room | Format | What you master |
 |------|--------|-----------------|
+| [The Arcane Notebook](arcane-notebook/) | 💻 Hands-on | Open JupyterHub, run cells, write scripts, explore the Jupyter terminal |
+| [The Path Labyrinth](path-labyrinth/) | 💻 Hands-on | Command `$PATH`; load and unload modules; compare Jupyter vs SSH environments |
 | [The Venv Forge](venv-forge/) | 💻 Hands-on | Forge isolated Python environments — no more dependency collisions |
-| [The Arcane Notebook](arcane-notebook/) | 💻 Hands-on | Run Python on the Yens from a browser; connect your venv as a kernel |
-| [The Path Labyrinth](path-labyrinth/) | 💻 Hands-on | Command the shell's search paths; banish "command not found" forever |
-| [The Key Vault](key-vault/) | 🖊️💬 Concept + hands-on | Unlock Stanford AI Playground and lock your secrets in `.env` |
-| [The Watchtower of Secrets](watchtower-of-secrets/) | 💬 Discussion | See exactly what leaves your machine on every API call |
-| [The AI Scribe](ai-scribe/) | 💻 Hands-on | Write code faster with an AI pair programmer at your side |
-| [The Oracle's Chamber](oracles-chamber/) | 💻 Hands-on | Call any OpenAI-compatible API from Python like a pro |
+| [The Stanford AI Playground](stanford-ai-playground/) | 🖊️💬 Concept + demo | Understand Stanford's AI gateway — web GUI, API, upsides and downsides |
+| [The Key Vault](key-vault/) | 💻 Hands-on | Load the API key from `.env`, add to `.gitignore`, understand what you're sending |
+| [The Oracle's Chamber](oracles-chamber/) | 💻 Hands-on | Make your first API call; extract data from a real SEC filing; move code to a script |
 | [The Binding Room](binding-room/) | 💻 Hands-on | Tame wild LLM output into clean, validated structures with Pydantic |
-| [The Ledger](ledger/) | 💬 Discussion | Build token-cost intuition; know when NOT to summon the Oracle |
-| [The Persistence Chamber](persistence-chamber/) | 💻 Hands-on | Launch jobs that keep running long after you close your laptop |
 | [Boss Gate 2](boss-gate-2/) | 🔑 Capstone | Ship an end-to-end LLM research pipeline |

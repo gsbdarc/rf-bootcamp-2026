@@ -2,7 +2,7 @@
 layout: default
 title: "The Key Vault"
 parent: "Day 2 — The Alchemist's Lab"
-nav_order: 5
+nav_order: 6
 permalink: /day2/key-vault/
 ---
 
@@ -10,67 +10,129 @@ permalink: /day2/key-vault/
 
 <div data-room-id="d2-key-vault"></div>
 
-*You press your shoulder against a door reinforced with iron bands and Stanford seals. It swings open to reveal the AI Playground — a walled garden carved out of the University's own infrastructure, humming with approved models and institutional eyes. These keys are not yours to keep. They belong to Stanford, they are audited, and they do not cross the campus perimeter. Know what that buys you — speed, safety, budget protection — and what it costs you — privacy of prompts — before your fingers touch a single API endpoint.*
+*You press your shoulder against a door reinforced with iron bands and Stanford seals. It swings open to reveal a small chamber with a single locked chest. Inside: the key that opens the Stanford AI Playground. These keys are not yours to keep. They belong to Stanford, they are audited, and they do not cross the campus perimeter. Know what that buys you — speed, safety, budget protection — and what it costs you — privacy of prompts — before your fingers touch a single API endpoint.*
 
 ---
 
 ## 🗡️ Main Quest
 
-You are standing at the threshold. The vault holds models that could accelerate your research by months. The only thing between you and them is a properly loaded key.
-
 {: .important }
-> **Quest:** Load a Stanford AI Playground API key from a `.env` file using `python-dotenv`, and make your first authenticated request to confirm the key works.
+> **Quest:** Load the Stanford AI Playground API key from a `.env` file, add `.env` to `.gitignore`, and make your first authenticated API call.
 
-**The Stanford AI Playground**
+---
 
-Stanford's AI Playground provides access to approved LLMs (GPT-4o, Claude, and others) through an OpenAI-compatible API. It differs from a personal OpenAI account in three critical ways:
+### Step 1 — Look at the Shared Key
 
-1. **Stanford data perimeter** — data stays within Stanford's contracted perimeter, subject to the University's data agreements
-2. **Budget caps** — spending is controlled; you cannot accidentally run up a $10,000 bill
-3. **Audit logs** — Stanford can see what was sent (prompts + responses); act accordingly
-
-**Step 1 — Create `.env`**
+The bootcamp API key lives in a shared file on the Yens. Take a look:
 
 ```bash
-cd ~/rf-bootcamp-2026
-touch .env
+cat /scratch/shared/rf-bootcamp-2026/.env
 ```
 
-Edit `.env` (never commit this file):
+You'll see something like:
+
 ```
-OPENAI_API_KEY=your-playground-api-key-here
+OPENAI_API_KEY=sk-stanford-...
 OPENAI_BASE_URL=https://api.stanford.edu/openai/v1
 ```
 
-Your instructor will provide the Playground API key and correct base URL for your cohort.
+Do not copy this file anywhere public. Do not commit it to git. You are about to load it safely.
 
-**Step 2 — Add `.env` to `.gitignore`**
+---
+
+### Step 2 — Create Your Own `.env`
+
+In your `day2/` directory:
 
 ```bash
-echo ".env" >> .gitignore
-git add .gitignore
-git commit -m "Ignore .env files"
+cd ~/day2
+touch .env
 ```
 
-**Step 3 — Load and use in Python**
+Open `.env` and add the values you saw above:
+
+```
+OPENAI_API_KEY=sk-stanford-...
+OPENAI_BASE_URL=https://api.stanford.edu/openai/v1
+```
+
+---
+
+### Step 3 — Add `.env` to `.gitignore`
+
+The `.env` file must never be committed to git. Add it now:
+
+```bash
+echo ".env" >> ~/.gitignore
+# or, within your bootcamp repo:
+echo ".env" >> ~/rf-bootcamp-2026/.gitignore
+git -C ~/rf-bootcamp-2026 add .gitignore
+git -C ~/rf-bootcamp-2026 commit -m "Ignore .env files"
+```
+
+{: .warning }
+> **A committed API key is a leaked key.** GitHub indexes public repos. Even if you delete the key in a later commit, it remains in the history and can be found by automated scanners. Add `.env` to `.gitignore` before you ever create the file.
+
+---
+
+### Step 4 — Load in Python
+
+In your JupyterHub notebook (with the Bootcamp 2026 kernel):
 
 ```python
 from dotenv import load_dotenv
 import os
-import openai
 
-load_dotenv()   # reads .env, sets environment variables
+load_dotenv('/path/to/your/day2/.env')   # reads .env, sets environment variables
+
+print(os.getenv("OPENAI_API_KEY"))       # should print your key (keep this cell private)
+print(os.getenv("OPENAI_BASE_URL"))
+```
+
+Or simply `load_dotenv()` (no path) to load `.env` from the current working directory.
+
+---
+
+### Step 5 — Initialize the Client
+
+```python
+import openai
 
 client = openai.OpenAI(
     api_key=os.environ["OPENAI_API_KEY"],
     base_url=os.environ["OPENAI_BASE_URL"],
 )
-
-response = client.chat.completions.create(
-    model="gpt-4o-mini",
-    messages=[{"role": "user", "content": "Say 'The vault is open' and nothing else."}]
-)
-print(response.choices[0].message.content)
 ```
 
+Notice: the key never appears in the code. The code is safe to commit. The `.env` file is not.
+
+---
+
+## 🔒 What Leaves Your Machine on Every API Call
+
+Every time you call the API, the following is sent to Stanford's gateway:
+
+- **Prompt text** — verbatim, including any data you paste in
+- **API key** — sent as an HTTP header (never put it in the prompt itself)
+- **Metadata** — timestamp, model name, token counts, your IP address
+- **Model response** — returned and (at Stanford's end) logged
+
+**Three-bucket rule** — before sending any data to an API, classify it:
+
+| Bucket | Examples | Send via Stanford API? |
+|--------|----------|----------------------|
+| 🟢 **Public** | Published papers, open datasets | Yes |
+| 🟡 **Restricted** | Unpublished research, proprietary data, IRB-approved data | Check your DUA/IRB first |
+| 🔴 **PII** | Names, SSNs, health records, email addresses | No — never |
+
+When in doubt: anonymize a test subset before sending real data through any API.
+
 <label class="quest-check"><input type="checkbox" data-room="d2-key-vault" data-key="main"> Main Quest complete</label>
+
+---
+
+## 🧠 Skills Learned
+
+- Load API keys from `.env` using `python-dotenv` — the key stays out of your code and out of git
+- `.gitignore` is your first line of defense against accidental credential exposure
+- Everything you send through the Stanford AI Playground is logged — classify your data before calling the API

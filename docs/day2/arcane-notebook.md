@@ -2,7 +2,7 @@
 layout: default
 title: "The Arcane Notebook"
 parent: "Day 2 — The Alchemist's Lab"
-nav_order: 3
+nav_order: 2
 permalink: /day2/arcane-notebook/
 ---
 
@@ -14,56 +14,144 @@ permalink: /day2/arcane-notebook/
 
 ---
 
+## 🔰 Warm-Up: SSH Check
+
+Before opening any notebooks, confirm you're on the Yens.
+
+```bash
+ssh SUNetID@yen.stanford.edu
+```
+
+Once connected:
+
+```bash
+hostname          # which Yen did you land on?
+whoami            # are you logged in as yourself?
+pwd               # what directory are you in?
+ls                # do you see files from Day 1?
+```
+
+You should see your home directory and the `rf-bootcamp-2026` folder you cloned yesterday.
+
+---
+
 ## 🗡️ Main Quest
 
-The notebook is open. The kernel is live. All that's left is to prove you're the one casting the spells — not your laptop.
-
 {: .important }
-> **Quest:** Open JupyterHub on the Yens, start a notebook, run a cell — then connect the venv you just built as a kernel.
+> **Quest:** Open JupyterHub on the Yens, run your first Python cells in a notebook, write and execute a script from the terminal, and explore files using the Jupyter terminal.
 
-**Open JupyterHub:**
+---
 
-Navigate to [https://jupyter.yen.stanford.edu](https://jupyter.yen.stanford.edu) in your browser and log in with your SUNet credentials. Start a server if prompted.
+### Step 1 — Open JupyterHub
 
-**Create a notebook:**
+JupyterHub is a browser-based interface to the Yens. Choose any node:
 
-- Click **New → Python 3** (or select an existing kernel)
-- In the first cell, type and run:
+| Node | URL |
+|------|-----|
+| Yen1 | [yen1.stanford.edu/jupyter/hub/home](https://yen1.stanford.edu/jupyter/hub/home) |
+| Yen2 | [yen2.stanford.edu/jupyter/hub/home](https://yen2.stanford.edu/jupyter/hub/home) |
+| Yen3 | [yen3.stanford.edu/jupyter/hub/home](https://yen3.stanford.edu/jupyter/hub/home) |
+| Yen4 | [yen4.stanford.edu/jupyter/hub/home](https://yen4.stanford.edu/jupyter/hub/home) |
+| Yen5 | [yen5.stanford.edu/jupyter/hub/home](https://yen5.stanford.edu/jupyter/hub/home) |
+
+Log in with your SUNet credentials. You should see the same files as your home directory on the Yens.
+
+---
+
+### Step 2 — Start a Notebook and a Terminal
+
+- Click the **blue "+"** to open the Launcher
+- Start a **Python 3** notebook
+- Also open a **Terminal** tab — you'll switch between the two throughout Day 2
+
+---
+
+### Step 3 — First Notebook Cells (Exercise 1.1)
+
+Type each block into a **separate cell** and run with **Shift+Enter**:
 
 ```python
-import os
-print("Running on:", os.uname().nodename)
-print("Python location:", os.sys.executable)
+# Cell 1
+print("Hello, World!")
 ```
-
-- Press **Shift+Enter** to run the cell. The output should show a Yens hostname — not your laptop.
-
-**Understand the kernel:**
-
-The kernel is the Python process running your code. When you close the browser, the kernel keeps running on the Yens. Your code's state (variables, imports) lives in the kernel, not the file.
 
 ```python
-x = 42          # assign in one cell
-print(x)        # run in a later cell — it still works (same kernel)
+# Cell 2
+import math
+print(math.pi)
 ```
 
-**Connect your venv as a kernel:**
+```python
+# Cell 3
+numbers = [1, 2, 3, 4, 5]
+print(sum(numbers))
+```
 
-After completing the Venv Forge, your virtual environment can be selected as a kernel in JupyterHub. Pick it from the kernel menu — your notebook will now run with your project's exact dependencies.
+Expected output: `Hello, World!`, `3.141592653589793`, `15`
+
+---
+
+### Step 4 — Save and Run a Python Script (Exercise 1.2)
+
+In the **terminal tab**, create an empty file:
+
+```bash
+touch interactive.py
+```
+
+Find `interactive.py` in the JupyterHub file browser, open it, and paste the three code blocks from Step 3. Save the file.
+
+Now run it from the terminal:
+
+```bash
+python interactive.py
+```
+
+Verify you get the same output as the notebook cells. This is how you move from exploring in a notebook to running standalone scripts.
+
+---
+
+### Step 5 — Terminal Basics (Exercise 1.3)
+
+In the **terminal tab**:
+
+```bash
+# List your home directory
+ls
+
+# Navigate into your bootcamp repo
+cd rf-bootcamp-2026
+
+# List its contents
+ls
+
+# Which python are you using?
+which python3
+```
+
+Note the python path — compare it to what you see in the notebook.
+
+---
+
+### Step 6 — Read a File in the Notebook (Exercise 1.4 — Placeholder)
+
+{: .note }
+> 🚧 **Coming soon:** This exercise will use files from your grimoire to explore reading data into the notebook and navigating paths. For now, try this on your own:
+> 
+> ```python
+> # Pick any .spell file from your grimoire on the Yens
+> with open("/scratch/shared/SUNetID/grimoire/fire/some_spell.spell", "r") as f:
+>     print(f.read())
+> ```
+> 
+> What does the file contain? Can you print just the first line?
 
 <label class="quest-check"><input type="checkbox" data-room="d2-arcane-notebook" data-key="main"> Main Quest complete</label>
 
 ---
 
-## 📦 Side Quests
-
-*Additional side quests coming soon.*
-
----
-
 ## 🧠 Skills Learned
 
-- You can now open JupyterHub and run Python on Yens hardware from any browser — no SSH required
-- You understand what a kernel is: the persistent Python process that outlives your browser tab and remembers everything
-- You know the kernel keeps running after you close the browser — a superpower when used wisely, a trap when forgotten
-- You can connect a virtual environment as a JupyterHub kernel, ensuring your notebook uses the right dependencies
+- You can open JupyterHub on the Yens and run Python from any browser — no SSH required for code
+- You know how to run cells in a notebook (`Shift+Enter`) and move working code into a `.py` script
+- You understand that the Jupyter terminal and the SSH terminal are both shells on the same machine — the same files are visible in both

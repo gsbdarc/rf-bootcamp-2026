@@ -2,7 +2,7 @@
 layout: default
 title: "The Path Labyrinth"
 parent: "Day 2 — The Alchemist's Lab"
-nav_order: 4
+nav_order: 3
 permalink: /day2/path-labyrinth/
 ---
 
@@ -16,14 +16,93 @@ permalink: /day2/path-labyrinth/
 
 ## 🗡️ Main Quest
 
-The shell is not magic — it follows a map. That map is `$PATH`, and every command you type is just a race down its list of corridors. Here is how you take control of the race.
-
 {: .important }
-> **Quest:** Understand `$PATH` — how the shell finds commands — and debug a "command not found" error by tracing the lookup chain.
+> **Quest:** Explore `$PATH` — understand how the shell finds commands — load and unload modules, and compare how the environment differs between JupyterHub and SSH terminals.
 
-**How PATH lookup works:**
+---
 
-Your tools (programs) live in folders. $PATH is the list of folders the shell searches, in order. A tool can be *installed* on the system and still be invisible to the shell if its folder isn't in $PATH.
+### Step 1 — See Your Current Path (Exercise 2.1)
+
+In the **JupyterHub terminal**:
+
+```bash
+which python
+which python3
+echo $PATH
+```
+
+The `$PATH` variable (anything prefixed with `$` is a variable) is a colon-separated list of directories the shell searches left to right. The first match wins. Find where `python` and `python3` live in your `$PATH`.
+
+---
+
+### Step 2 — Load a Module and Watch PATH Change
+
+```bash
+module load imagemagick
+which magick        # where is it now?
+echo $PATH          # compare to before — a new directory was prepended
+```
+
+`module load` works by prepending a directory to `$PATH`. The `magick` command is now findable.
+
+```bash
+module list         # what modules are currently loaded?
+```
+
+Now unload it:
+
+```bash
+module unload imagemagick
+which magick        # is it still there?
+echo $PATH          # what changed?
+```
+
+Try using `magick` after unloading — you should get "command not found."
+
+---
+
+### Step 3 — Explore Available Modules (Exercise 2.2)
+
+```bash
+module avail        # list everything available on the Yens
+module avail python # filter by name
+```
+
+Load a specific version of Python or R:
+
+```bash
+module load python/3.11
+which python3
+python3 --version
+```
+
+Why does the version matter? If your code uses a library that changed behavior between Python 3.9 and 3.11, `module load` gives you control over exactly which interpreter runs.
+
+Unload when done:
+
+```bash
+module unload python/3.11
+```
+
+---
+
+### Step 4 — Compare JupyterHub Terminal vs SSH Terminal (Exercise 2.3)
+
+Open a **new SSH terminal** on your laptop (not the Jupyter terminal):
+
+```bash
+ssh SUNetID@yen.stanford.edu
+which python3
+echo $PATH
+```
+
+Now compare that output to what you see in the **JupyterHub terminal**.
+
+Are they the same? Why might they differ? (Hint: JupyterHub starts with its own environment.)
+
+---
+
+### How PATH Lookup Works
 
 ```
   You have tools installed in different folders:
@@ -42,51 +121,23 @@ Your tools (programs) live in folders. $PATH is the list of folders the shell se
                 adds /apps/python/3.11/ to the FRONT of PATH
 
   $ python3  →  shell finds /apps/python/3.11/python3 FIRST  ✓
-                (never even looks in /usr/bin/)
 
   ──────────────────────────────────────────────────────────────
   Situation 3 — after  source .venv/bin/activate:
                 adds .venv/bin/ to the FRONT of PATH
 
   $ python3  →  shell finds .venv/bin/python3 FIRST  ✓
-                (module and system versions are shadowed)
 ```
 
-Both `module load` and `source .venv/bin/activate` work the same way: they win by going first. The tool that's at the front of PATH is the one that runs.
-
-```
-  $PATH (left to right, first match wins):
-
-  [.venv/bin] → [/apps/python/3.11/] → [/usr/local/bin] → [/usr/bin] → ...
-       ↑
-   venv wins — everything else shadowed
-```
-
-**See your current PATH:**
-```bash
-echo $PATH
-# Output: colon-separated list of directories, checked left to right
-```
-
-**Find where a command lives:**
-```bash
-which python3       # which directory's python3 runs when you type python3?
-which pip           # which pip?
-which module        # is module even a real command?
-```
-
-**Load a module and see PATH change:**
-```bash
-module load python/3.11
-echo $PATH          # compare before and after — a new directory was prepended
-which python3       # now points to the module version
-```
-
-**Activate your venv and see it change again:**
-```bash
-source .venv/bin/activate
-echo $PATH          # .venv/bin is now first
-which python3       # now points into .venv
-```
+Both `module load` and `source .venv/bin/activate` win by going first.
 
 <label class="quest-check"><input type="checkbox" data-room="d2-path-labyrinth" data-key="main"> Main Quest complete</label>
+
+---
+
+## 🧠 Skills Learned
+
+- `$PATH` is the map your shell uses to find every command you type — leftmost entry wins
+- `module load` prepends a directory to `$PATH`; `module unload` removes it
+- `module avail` shows everything available; loading a specific version pins the interpreter you use
+- The Jupyter terminal and SSH terminal may have different environments — always check `which` when debugging
