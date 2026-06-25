@@ -33,7 +33,21 @@ The tricky part of ordering from the head chef: when you write your recipe, you 
 You measure first, then request. Not the other way around.
 
 {: .important }
-> **Quest:** Measure how long your script takes and how much memory it uses before writing a single `#SBATCH` directive.
+> **Quest:** Run the extraction script interactively, understand what it does, then measure its resource footprint before writing a single `#SBATCH` directive.
+
+**Step 0 — Run the script and understand it:**
+
+```bash
+# Look at the script
+cat ~/rf-bootcamp-2026/scripts/extract_form3_one_file.py
+
+# Run it on one filing
+cd ~/rf-bootcamp-2026
+source .venv/bin/activate
+python scripts/extract_form3_one_file.py data/sec_filings/form3_sample.txt
+```
+
+What does the script do? What output do you see? How long did it seem to take? Now you're ready to measure it properly.
 
 **Step 1 — Time a script:**
 
@@ -62,6 +76,31 @@ htop -u $USER              # filter to your processes, watch RES column (residen
 userload
 # Find your username — confirm you're only using what you expected
 ```
+
+**Step 4 — Monitor a script you haven't profiled before:**
+
+Open two terminal tabs. In the first, run a script whose resource profile you don't know:
+
+```bash
+python scripts/mystery_script.py
+```
+
+Immediately in the second terminal, watch it:
+
+```bash
+htop -u $USER     # watch RES (resident memory) and CPU % columns
+userload          # see your footprint vs other users on the cluster
+```
+
+If it finishes too quickly to catch, wrap it with `time`:
+
+```bash
+time python scripts/mystery_script.py
+```
+
+Compare with a neighbor — do you see the same numbers? Based on what you measured, what `--time`, `--mem`, and `--cpus-per-task` would you request?
+
+---
 
 **Rule of thumb for `#SBATCH` requests:**
 

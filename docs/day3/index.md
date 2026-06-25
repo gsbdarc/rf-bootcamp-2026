@@ -19,11 +19,10 @@ floor: 3
 
 | Room | Format | What you master |
 |------|--------|-----------------|
-| [The Kitchen](kitchen/) | 🖊️💻 Demo | SLURM as a head chef; watch resource contention explode in real time |
-| [The Scales](scales/) | 💻 Hands-on | Profile before you request — stop burning your neighbors' compute |
+| [The Kitchen](kitchen/) | 🖊️💻 Demo + discussion | SLURM as a head chef; watch resource contention in real time |
+| [The Scales](scales/) | 💻 Hands-on | Run the script, profile it — stop guessing at resource requests |
 | [The Foreman's Desk](foremans-desk/) | 💻 Hands-on | Forge a SLURM script from a blank page and submit it yourself |
 | [The Watch Tower](watch-tower/) | 💻 Hands-on | Stalk, cancel, and autopsy your batch jobs like a pro |
-| [The Trap Room](trap-room/) | 💬 Discussion | Name the failure modes that kill most pipelines before they finish |
 | [The Array Cavern](array-cavern/) | 💻 Hands-on | Detonate one script across hundreds of inputs; harvest the results |
 | [The Chronicle](chronicle/) | 💻 Hands-on | Capture your pipeline in a README while the details are still hot |
 | [Boss Gate 3](boss-gate-3/) | 🔑 Capstone | Drive a real research pipeline at scale — documented and delivered |

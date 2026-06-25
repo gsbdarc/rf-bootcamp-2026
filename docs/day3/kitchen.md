@@ -21,7 +21,7 @@ Before you touch a single `sbatch` flag, you need to see the beast with your own
 {: .important }
 > **Quest:** Watch the Yens live — see resource contention in real time, then understand the kitchen analogy for SLURM.
 
-This is a 20-minute live demo. Follow along with what's on the projector.
+This is a 30-minute class participation block. Follow along on the projector — call out what you see.
 
 **Step 1 — See who's using the Yens right now:**
 
@@ -31,6 +31,9 @@ htop              # interactive process viewer — press q to quit
 ```
 
 Look at `userload`. Every row is a researcher. Some are using thousands of CPU-hours. Now imagine you try to run a 32-core job from the command line — you'd be competing with all of them for the same shared hardware.
+
+{: .note }
+> **Class discussion:** What do you notice about CPU usage? Who's using the most? What do you think happens if everyone runs intensive jobs directly on the shared interactive Yens at the same time?
 
 **Step 2 — The kitchen analogy:**
 
@@ -100,6 +103,9 @@ The Yens is just a much bigger, shared kitchen:
 | Warehouse            | Shared storage (`/scratch`)         |
 | Recipe               | Your Python/R/shell script          |
 | Dietary restriction  | `#SBATCH` resource request          |
+
+{: .note }
+> **Class discussion:** What questions do you have about how SLURM assigns resources? What happens if you ask for too much? Too little?
 
 You don't walk into the kitchen and start cooking. You hand your recipe to the head chef (`sbatch`), specify what burners and fridge space you need (`#SBATCH` directives), and come back when the meal is done.
 

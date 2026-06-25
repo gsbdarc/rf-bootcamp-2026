@@ -2,7 +2,7 @@
 layout: default
 title: "The Array Cavern"
 parent: "Day 3 — The SLURM Mines"
-nav_order: 7
+nav_order: 6
 permalink: /day3/array-cavern/
 ---
 
