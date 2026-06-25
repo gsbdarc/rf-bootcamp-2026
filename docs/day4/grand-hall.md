@@ -2,7 +2,7 @@
 layout: default
 title: "The Grand Hall"
 parent: "Day 4 — The GPU Fortress"
-nav_order: 6
+nav_order: 5
 permalink: /day4/grand-hall/
 ---
 

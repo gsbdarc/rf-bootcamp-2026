@@ -2,7 +2,7 @@
 layout: default
 title: "The Engine Room"
 parent: "Day 4 — The GPU Fortress"
-nav_order: 5
+nav_order: 6
 permalink: /day4/engine-room/
 ---
 
@@ -29,7 +29,7 @@ This is a concept and demo block.
 | **Cost** | Free (cluster access you already have) | Budget-capped (Stanford account) | Costs $ per token |
 | **Models available** | Whatever fits on the H200 (141 GB VRAM) | GPT-4o, Claude, Llama — vendor-curated list | Most capable, latest models |
 | **Good for** | Restricted/sensitive data, large batch jobs | General research, day-to-day LLM work | Work where data restrictions allow |
-| **Setup** | `ollama pull` + API already running | API key from playground.stanford.edu | API key from vendor |
+| **Setup** | `ollama pull` + API already running | API key from aiapi-prod.stanford.edu | API key from vendor |
 
 **The secret that makes this easy:**
 
@@ -46,7 +46,7 @@ client = openai.OpenAI(
 
 # Pattern 2 — Stanford AI Playground (Stanford perimeter, budget-capped)
 client = openai.OpenAI(
-    base_url="https://playground.stanford.edu/api/v1",
+    base_url="https://aiapi-prod.stanford.edu/v1",
     api_key=os.getenv("PLAYGROUND_API_KEY")
 )
 
@@ -58,7 +58,7 @@ client = openai.OpenAI(
 
 # The rest of your code is identical across all three
 response = client.chat.completions.create(
-    model="llama3.2",         # swap model name to match the backend
+    model="llama3.2:3b",      # swap model name to match the backend
     messages=[{"role": "user", "content": prompt}]
 )
 ```
