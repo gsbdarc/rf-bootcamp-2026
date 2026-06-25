@@ -30,48 +30,44 @@ At any point, open your Quest Log (bottom-left of any page), click **Sync to lea
 
 ---
 
-### Floor 2 — The Alchemist's Lab *(Day 2, ~3h 15min)*
-> *Transmutation in progress. Turn raw text into structured data. Keep your secrets secret.*
+### Floor 2 — The Alchemist's Lab *(Day 2)*
+> *Transmutation in progress. Turn raw SEC filings into structured data. Keep your secrets secret.*
 
 - **JupyterHub:** run code on cluster hardware from a browser; connect your venv as a kernel
-- **Python environments:** create and manage `venv`; never break another project's dependencies again
-- **Stanford AI Playground:** why it exists, what data governance it provides, how it differs from a personal API key
-- **Secrets management:** `.env`, `python-dotenv`, `.gitignore` — what leaves your machine on every API call
-- **Claude Code:** AI-assisted coding as a research tool; when to trust it, when to verify
-- **LLM API calls:** call any OpenAI-compatible API from Python; extract structured data with Pydantic
-- **Cost intuition:** when to use `grep` instead of GPT-4; how to estimate cost before scaling
-- **`screen`:** run a script that keeps going after you close your laptop
+- **Python environments:** `venv`, `pip`, modules, `$PATH` — manage dependencies without breaking other projects
+- **Stanford AI Playground:** web GUI and API gateway; what leaves the cluster; tokens, costs, context windows
+- **Secure key management:** `.env`, `python-dotenv`, `.gitignore` — keep credentials out of your code and git history
+- **LLM API calls:** call any OpenAI-compatible API from Python; extract structured data with Pydantic validation
+- **AI coding agents at Stanford:** data privacy and security; what context agents send; best practices for research
 
-**Boss Gate 2:** Run 5 earnings call transcripts through the LLM, extract structured sentiment data, commit as JSON.
+**Boss Gate 2:** Write a Python script that calls the LLM API, extracts structured data from one SEC filing, validates with Pydantic, and commits to your fork.
 
 ---
 
-### Floor 3 — The SLURM Mines *(Day 3, ~3 hrs)*
+### Floor 3 — The SLURM Mines *(Day 3)*
 > *Deep in the mountain, the forges never sleep. You describe the work; the foreman assigns the crew.*
 
-- **Why batch scheduling:** see real resource contention live on the Yens before writing a single script
-- **Resource estimation:** measure what your script actually costs in cores, memory, and time — before requesting it
-- **SLURM scripts:** write `sbatch` scripts from scratch; understand every directive
-- **Job monitoring:** `squeue`, `scancel`, `sacct` — track and audit jobs without staring at a terminal
-- **Job arrays:** run the same script on 100 inputs in parallel with one command
-- **Combining outputs:** merge 100 JSON results into one clean CSV
-- **Documentation:** write a README while the code is fresh — treat it as a research artifact
+- **SLURM (the kitchen analogy):** see live resource contention; understand why shared compute needs a scheduler
+- **Resource estimation:** measure your script's wall time and memory before writing a single `#SBATCH` directive
+- **Job lifecycle:** submit → queue → run → complete → logs; understand every stage
+- **Job monitoring:** `squeue`, `sacct`, `scancel` — track, audit, and cancel jobs from any terminal
+- **Documentation:** write a README while the details are fresh — treat it as a research artifact
 
-**Boss Gate 3:** Process 100 SEC filings in parallel via a SLURM job array, merge the results into a CSV, write a README. Commit everything.
+**Boss Gate 3:** Submit your Day 2 LLM script as a SLURM batch job; update the README with how to run it. Commit and push.
 
 ---
 
-### Floor 4 — The GPU Fortress *(Day 4, ~2h 40min)*
-> *The walls hum with tensor cores. Here you run your first GPU job, summon a local LLM, and learn what it means to do this work responsibly.*
+### Floor 4 — The GPU Fortress *(Day 4)*
+> *The walls hum with tensor cores. Scale your pipeline, claim the GPU, summon a local LLM.*
 
-- **GPU landscape:** A30 / A40 / H200 on the Yens — what each is good for, how to request one
-- **GPU jobs:** `--gres=gpu:1`, `nvidia-smi` inside a job, why model size matters
-- **Ollama:** pull and run a local LLM on cluster hardware; the OpenAI-compatible interface
-- **Local vs. cloud APIs:** Ollama (on Yens) vs. Stanford AI Playground vs. third-party — same Python code, different `base_url`; privacy and cost trade-offs
-- **Privacy and data governance:** the 3-bucket rule (public / restricted / PII); when cloud APIs are off-limits; classify your own research datasets
-- **Agent failure modes:** hallucination at scale, runaway loops, prompt injection, irreversibility — name them before they appear in your pipeline
+- **Job arrays:** one script, one `--array` flag, hundreds of inputs in parallel; fault-tolerant with checkpoint logs
+- **GPU tiers:** A30 / A40 / H200 on the Yens — VRAM constraints, use cases, how to request one
+- **Local LLMs:** Ollama on the H200; model weights on cluster hardware; nothing leaves the Yens
+- **OpenAI-compatible API:** swapping `base_url` is the only code change between Ollama, AI Playground, and third-party
+- **Human vs. LLM:** when to trust results at scale; validation strategies before running 10,000 jobs
+- **Reproducibility:** README as the deliverable that makes a pipeline rerunnable by anyone
 
-**Boss Gate 4:** Swap your Day 3 pipeline to the Ollama endpoint, compare outputs against the cloud API, update your README, commit.
+**Boss Gate 4:** Scale your pipeline to a 100-filing job array, swap the endpoint to Ollama, compare outputs side-by-side, finalize your README. Commit and push.
 
 ---
 
@@ -132,8 +128,8 @@ Each floor is locked until you pass the Boss Gate from the previous floor. Here'
 |-----------|----------------|--------------|
 | **Gate 1** | `signature_spell.txt` | Floor 2 — The Alchemist's Lab |
 | **Gate 2** | `results/mood_ring.json` | Floor 3 — The SLURM Mines |
-| **Gate 3** | `results/great_scroll_sweep.csv` · `results/failed_tasks.txt` · `README.md` | Floor 4 — The GPU Fortress |
-| **Gate 4** | `results/comparison.csv` · `results/privacy_ruling.md` · updated `README.md` | All floors cleared ⚔️ |
+| **Gate 3** | `jobs/extract.sh` · `README.md` | Floor 4 — The GPU Fortress |
+| **Gate 4** | `results/great_scroll_sweep.csv` · `results/comparison.csv` · `README.md` | All floors cleared ⚔️ |
 
 The grader checks that the files exist and contain valid data — it does not grade quality. The goal is to prove you ran the pipeline, not that it was perfect.
 
