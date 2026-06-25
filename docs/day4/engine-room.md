@@ -2,7 +2,7 @@
 layout: default
 title: "The Engine Room"
 parent: "Day 4 — The GPU Fortress"
-nav_order: 6
+nav_order: 5
 permalink: /day4/engine-room/
 ---
 
@@ -78,7 +78,7 @@ Not sure about your data? → Visit the Grand Hall before you pick.
 ```
 
 {: .note }
-> The [Grand Hall](../grand-hall/) covers Stanford's 3-bucket data classification rule. If you don't know which bucket your data is in, that room comes before this decision — not after.
+> The 3-bucket data classification rule was covered in [The Crucible](../../day2/human-vs-llm/) on Day 2. If you're unsure which bucket your data belongs to, revisit that room before picking an endpoint.
 
 <label class="quest-check"><input type="checkbox" data-room="d4-engine-room" data-key="main"> Engine Room briefing complete — I know which LLM access pattern fits my data and research context</label>
 

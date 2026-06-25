@@ -78,7 +78,40 @@ High volume + low stakes  → spot-check 5%, automate a sanity check
 High volume + high stakes → human-in-the-loop; never fully automate
 ```
 
-<label class="quest-check"><input type="checkbox" data-room="d2-human-vs-llm" data-key="main"> Crucible complete — I can decide when to use an LLM and how much to trust its output</label>
+---
+
+### Data governance — know your data before you pick your tool
+
+Every prompt you send leaves your machine. Know where it's going.
+
+| Bucket | Examples | Stanford AI Playground | Ollama (local) | Third-party API |
+|--------|----------|----------------------|----------------|-----------------|
+| 🟢 **Public** | Published papers, SEC filings, open datasets | ✅ | ✅ | ✅ |
+| 🟡 **Restricted** | Unpublished research, proprietary data, DUA-covered datasets | Check your DUA | Usually ✅ | Usually ❌ |
+| 🔴 **PII** | Names, SSNs, health records, email addresses | ❌ — never | Depends on IRB | ❌ — never |
+
+**What leaves the cluster on every API call:**
+- **Stanford AI Playground** → prompt text flows through Stanford's contracted perimeter with the vendor. Logged. Do not send PII.
+- **Ollama (local)** → nothing leaves the Yens. Weights run on the H200. Safe for restricted data.
+- **Third-party API** → prompt text reaches the vendor's servers. Standard commercial terms apply.
+
+**IRB and DUA:** Some data use agreements explicitly restrict where data can be processed. "Stanford systems" may or may not include cloud APIs — read yours before sending anything restricted. When in doubt: local Ollama is always the safe default.
+
+{: .note }
+> **Class discussion:** The SEC filings you're processing today — which bucket? Can they go to the Stanford AI Playground? What would change if they contained unreported insider PII?
+
+---
+
+### Designing defensible research pipelines
+
+A pipeline is defensible when a skeptical colleague can audit it end-to-end. Before you scale:
+
+1. **Classify your data** — which bucket? Which tool?
+2. **Validate your outputs** — Pydantic schema + manual spot-check on 10–20 examples
+3. **Document your decisions** — README: what the pipeline does, what model, what prompt version, what validation was run
+4. **Keep humans in the loop for high-stakes steps** — extraction is fine to automate; acting on that extraction may not be
+
+<label class="quest-check"><input type="checkbox" data-room="d2-human-vs-llm" data-key="main"> Crucible complete — I can decide when to use an LLM, classify my data, and design a defensible pipeline</label>
 
 ---
 
@@ -87,4 +120,5 @@ High volume + high stakes → human-in-the-loop; never fully automate
 - You can classify any task into: LLM wins / human wins / needs careful testing
 - You know that high volume × invisible errors = the most dangerous pipeline failure mode
 - You will always spot-check outputs before scaling — not because you distrust the model, but because you've seen what happens when you don't
+- You can classify any dataset into the three buckets and choose the right tool without guessing
 - You can design a validation step proportional to the stakes of the task

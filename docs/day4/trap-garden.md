@@ -2,7 +2,7 @@
 layout: default
 title: "The Trap Garden"
 parent: "Day 4 — The GPU Fortress"
-nav_order: 7
+nav_order: 6
 permalink: /day4/trap-garden/
 ---
 

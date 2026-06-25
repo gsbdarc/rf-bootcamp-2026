@@ -10,7 +10,7 @@
   const STORAGE_KEY = 'dungeon.v1.progress';
 
   // Total possible checkboxes across the entire dungeon (all 4 days)
-  const TOTAL_CHECKS = 31;
+  const TOTAL_CHECKS = 30;
 
   const LEVEL_TITLES = [
     'Initiate', 'Apprentice', 'Scholar', 'Journeyman', 'Adept',
@@ -69,7 +69,6 @@
         { id: 'd4-h200-chamber',        keys: ['main'] },
         { id: 'd4-summoning-circle',    keys: ['main'] },
         { id: 'd4-engine-room',         keys: ['main'] },
-        { id: 'd4-grand-hall',          keys: ['main'] },
         { id: 'd4-trap-garden',         keys: ['main'] },
         { id: 'd4-boss-gate',           keys: ['commit'] },
       ],

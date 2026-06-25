@@ -2,7 +2,7 @@
 layout: default
 title: "Boss Gate 4"
 parent: "Day 4 — The GPU Fortress"
-nav_order: 8
+nav_order: 7
 permalink: /day4/boss-gate-4/
 ---
 
@@ -28,15 +28,12 @@ The Archmage does not test you with riddles. It tests you with the full stack �
 > **Part 2 — Compare outputs:**
 > Run the same 5 filings through both the Playground (gpt-4o-mini) and Ollama (your chosen model). Save the results side-by-side in `results/comparison.csv` with columns: `filename`, `playground_name`, `ollama_name`, `playground_role`, `ollama_role`.
 >
-> **Part 3 — Privacy ruling:**
-> Write one paragraph in `results/privacy_ruling.md` stating: which bucket do these SEC filings belong to, can they go to a cloud API, can they go to Ollama, and what would change if the filings contained unreported PII.
->
-> **Part 4 — Commit your README:**
-> Ensure `README.md` describes the full pipeline including both endpoints and the privacy ruling.
+> **Part 3 — Commit your README:**
+> Ensure `README.md` describes the full pipeline including both endpoints.
 >
 > **Submit:**
 > ```bash
-> git add results/comparison.csv results/privacy_ruling.md README.md
+> git add results/comparison.csv README.md
 > git commit -m "Boss Gate 4: Champion's Ascent complete"
 > git push
 > ```
@@ -66,7 +63,7 @@ Every row in this table is a weapon you forged, a door you unlocked, a skill no 
 | GPU computing | H200 via `--gres=gpu:1` | The H200 Chamber |
 | Local LLMs | Ollama on cluster hardware | The Summoning Circle |
 | Documentation | README + project layout | The Chronicle |
-| Data governance | 3-bucket privacy rule | The Grand Hall |
+| Data governance | 3-bucket privacy rule | The Crucible (Day 2) |
 
 ---
 
