@@ -43,21 +43,21 @@ Every completed quest adds to your **Quest Log** (shown in the widget, bottom-le
 
   <div class="floor-card{% unless unlocked contains 2 %} floor-card-locked{% endunless %}">
     <h3><a href="{{ '/day2/' | relative_url }}">Floor 2 — The Alchemist's Lab</a>{% unless unlocked contains 2 %} 🔒{% endunless %}</h3>
-    <p>Levels 4–6 &nbsp;·&nbsp; 10 rooms + Boss Gate</p>
+    <p>Levels 4–6 &nbsp;·&nbsp; 8 rooms + Boss Gate</p>
   </div>
-  <div class="floor-skills">JupyterHub &middot; Virtual envs &middot; AI Playground &middot; Security &middot; Claude Code &middot; LLMs &middot; Screen</div>
+  <div class="floor-skills">JupyterHub &middot; Python envs &middot; AI Playground &middot; LLMs &middot; Pydantic &middot; AI agents &amp; data privacy</div>
 
   <div class="floor-card{% unless unlocked contains 3 %} floor-card-locked{% endunless %}">
     <h3><a href="{{ '/day3/' | relative_url }}">Floor 3 — The SLURM Mines</a>{% unless unlocked contains 3 %} 🔒{% endunless %}</h3>
-    <p>Levels 7–8 &nbsp;·&nbsp; 8 rooms + Boss Gate</p>
+    <p>Levels 7–8 &nbsp;·&nbsp; 6 rooms + Boss Gate</p>
   </div>
-  <div class="floor-skills">SLURM &middot; Job arrays &middot; Scaling &middot; README</div>
+  <div class="floor-skills">SLURM &middot; Resource profiling &middot; Batch jobs &middot; README</div>
 
   <div class="floor-card{% unless unlocked contains 4 %} floor-card-locked{% endunless %}">
     <h3><a href="{{ '/day4/' | relative_url }}">Floor 4 — The GPU Fortress</a>{% unless unlocked contains 4 %} 🔒{% endunless %}</h3>
     <p>Levels 9–10 &nbsp;·&nbsp; 7 rooms + Boss Gate</p>
   </div>
-  <div class="floor-skills">H200 GPU jobs &middot; Ollama &middot; Local vs cloud API &middot; Privacy &middot; Agent risks</div>
+  <div class="floor-skills">Job arrays &middot; H200 GPU &middot; Ollama &middot; Local vs cloud LLM &middot; Human vs LLM</div>
 </div>
 
 ---
