@@ -16,8 +16,8 @@ Your `README.md` is a living document. It starts as a file inventory on Day 1 an
 |-----|-----------------------------|
 | Day 1 | Organize the raw data dump. Write the first README. |
 | Day 2 | Write the LLM extraction script. Process one filing. Update README. |
-| Day 3 | Scale to hundreds of filings with a SLURM array job. Update README. |
-| Day 4 | Swap to a local GPU model. Compare outputs. Final README. |
+| Day 3 | Submit your first SLURM batch job. Update README. |
+| Day 4 | Scale with job arrays. Add GPU and local LLM. Final README. |
 
 ---
 
@@ -99,25 +99,25 @@ Measure wall time and memory before writing a single `#SBATCH` directive.
 `#SBATCH` directives: time, memory, CPUs, email; `sbatch`, `squeue`, `sacct`, `scancel`; reading logs.
 *Exercise:* Write `jobs/extract.sh`; submit with `sbatch`; monitor with `squeue`; retrieve output with `sacct`; cancel a job.
 
-**Job arrays**
-One script, one `--array` flag, hundreds of inputs running in parallel.
-*Exercise:* Convert to a job array (`#SBATCH --array=1-100`); one task per filing; collect all results.
-
 **Documentation**
 Writing a README while the details are still fresh.
-*Exercise:* Update `README.md` with SLURM instructions and how to rerun the array.
+*Exercise:* Update `README.md` with SLURM instructions and how to rerun the job.
 
 ### 📁 Project Milestone — Day 3
-> `jobs/extract.sh` and `jobs/array_extract.sh` added; results from all filings in `results/`; `README.md` updated with SLURM instructions. Committed and pushed.
+> `jobs/extract.sh` added; `README.md` updated with SLURM instructions. Committed and pushed.
 
 ### 🔑 Boss Gate 3
-Array job complete, results committed, README updated.
+Single SLURM job submitted and results committed, README updated.
 
 ---
 
-## Day 4 — Scaling Up: Arrays, GPUs & Local LLMs
+## Day 4 — Scaling to a Reproducible Research Pipeline
 
-**Theme:** One job is a proof of concept. A pipeline is research.
+**Theme:** From one job to a pipeline your collaborators can rerun.
+
+**Job arrays**
+One script, one `--array` flag, hundreds of inputs running in parallel; resource considerations at scale.
+*Exercise:* Convert `jobs/extract.sh` to an array job (`#SBATCH --array=1-100`); one task per filing; collect all results.
 
 **GPU computing on the Yens**
 GPU tiers: A30 / A40 / H200 — VRAM, use cases, when the queue wait is worth it; `--gres=gpu:1`.
@@ -131,12 +131,16 @@ Model weights on cluster hardware; nothing leaves the Yens; the OpenAI-compatibl
 Local Ollama vs. Stanford AI Playground vs. third-party APIs — data residency, cost, model availability.
 *Exercise:* Run the same 5 filings through both Playground and Ollama; save side-by-side in `results/comparison.csv`.
 
-**Human vs. LLM & agent failure modes** *(discussion)*
-When AI helps and when humans win; hallucination at scale, runaway loops, prompt injection, irreversibility — name them before your pipeline does.
-*Exercise:* Review comparison results — where did the models disagree? What would it take to verify? What would you do differently if you were processing 10,000 filings?
+**Human vs. LLM** *(discussion)*
+When does it make sense to use an LLM at scale vs. a human? How do you validate results before trusting them?
+*Exercise:* Review comparison results — where did the models disagree? What would you do differently at 10,000 filings?
+
+**Reproducible pipeline**
+Final README as the deliverable: describe every step so a collaborator can rerun the full pipeline from scratch.
+*Exercise:* Finalize `README.md` — raw data location, how to run the array, both endpoints, how to interpret results.
 
 ### 📁 Project Milestone — Day 4
-> `results/comparison.csv` added (Playground vs. Ollama outputs side-by-side). `README.md` finalized — full pipeline from raw data to GPU-powered extraction, both endpoints, how to rerun. Committed and pushed.
+> `jobs/array_extract.sh` added; `results/comparison.csv` added (Playground vs. Ollama side-by-side). `README.md` finalized. Committed and pushed.
 
 ### 🔑 Boss Gate 4
 Full pipeline documented and pushed — raw data in, structured results out, README tells the story.
