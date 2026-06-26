@@ -64,9 +64,8 @@ Your laptop
 │  └─────────────────────────────────────────────────┘        │
 │                                                             │
 │  Shared storage — all nodes see the same files:             │
-│  /home/users/SUNetID/   ← backed up, limited, personal     │
-│  /yen/projects/         ← backed up, large, for project    │
-│                            files, scripts, and results      │
+│  /home/users/SUNetID/     ← backed up, limited, personal   │
+│  /yen/projects/           ← backed up, large, project data │
 │  /scratch/shared/SUNetID/ ← large, fast, NOT backed up     │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -93,7 +92,7 @@ You are about to set foot on the Yens for the first time. Type carefully, breath
 ssh SUNetID@yen.stanford.edu
 ```
 
-Replace `SUNetID` with your Stanford username. When prompted for your password, type your Stanford password (nothing will appear — that's normal). You will be prompted for Duo two-factor authentication.
+Replace `SUNetID` with your actual Stanford username (e.g. `jsmith`). Once you're logged in, the shell variable `$USER` expands to your username automatically — so commands you run *on the Yens* will use `$USER` instead of the literal placeholder. When prompted for your password, type your Stanford password (nothing will appear — that's normal). You will be prompted for Duo two-factor authentication.
 
 **Identify your node:**
 ```bash

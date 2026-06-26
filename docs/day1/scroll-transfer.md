@@ -39,7 +39,7 @@ scp -r ~/Desktop/grimoire/ SUNetID@yen.stanford.edu:/scratch/shared/SUNetID/grim
 **Verify the transfer on the Yens:**
 ```bash
 # SSH back onto the Yens (or use the tab that's already open)
-ls /scratch/shared/SUNetID/grimoire/fire/    # should show your fire spells
+ls /scratch/shared/$USER/grimoire/fire/    # should show your fire spells
 ```
 
 {: .note }

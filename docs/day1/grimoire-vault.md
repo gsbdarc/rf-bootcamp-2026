@@ -60,7 +60,7 @@ What elements do you see? What patterns are there? What would make a logical org
 - Group by **tier** (`tier1/`, `tier2/`, … `tier5/`)
 - Group by **type** (`offensive/`, `defensive/`, `utility/`, `healing/`)
 
-We will go with **element** — it is the most natural grouping for a spell archive and maps cleanly to the filename structure.
+We will go with **element** — element names appear in every filename, so wildcard matching is clean and unambiguous.
 
 </details>
 
@@ -68,7 +68,7 @@ We will go with **element** — it is the most natural grouping for a spell arch
 
 **Step 4 — Try by hand first**
 
-Before using the terminal, open **Finder** (Mac) or **File Explorer** (Windows). Navigate to `Desktop/grimoire/`. Create a `fire/` folder and try moving 10 fire spells into it by clicking and dragging.
+Before using the terminal, open **Finder** (Mac) or **File Explorer** (Windows). Navigate to `Desktop/grimoire/`. Try moving 10 fire spells into a new `fire/` folder by clicking and dragging.
 
 Now imagine doing that for all 300 files across 5 elements. How long would it take? What happens when you get 10,000 files next year?
 
@@ -87,7 +87,7 @@ The `*` wildcard matches any characters. `*_fire_*` matches every filename that 
 
 ```bash
 cd ~/Desktop/grimoire
-mkdir fire ice lightning earth wind
+mkdir -p fire ice lightning earth wind   # -p skips any folder that already exists
 
 mv *_fire_*.spell fire/
 mv *_ice_*.spell ice/
@@ -123,7 +123,7 @@ cp */*_utility_*.spell utility/
 cp */*_healing_*.spell healing/
 ```
 
-`*/*` reaches into every immediate subdirectory at once — so `*/*_offensive_*` matches offensive spells inside fire/, ice/, lightning/, earth/, and wind/ all in one command. Using `cp` instead of `mv` means each spell now lives in two places simultaneously: its element folder and its type folder.
+`*/*` reaches into every immediate subdirectory at once — so `*/*_offensive_*` matches offensive spells inside fire/, ice/, lightning/, earth/, and wind/ all in one command. Using `cp` instead of `mv` creates actual copies — the original stays in its element folder and a duplicate is placed in the type folder. Both files are independent; changing one does not affect the other.
 
 </details>
 
@@ -150,7 +150,7 @@ ls wind/ | wc -l
 You can also count everything at once:
 
 ```bash
-ls */*.spell | wc -l  # total spells across all element folders
+ls {fire,ice,lightning,earth,wind}/*.spell | wc -l  # total across all five element folders — should be 300
 ```
 
 ---
@@ -162,8 +162,8 @@ Create a file listing the names of all tier-3 spells in the grimoire.
 The `grep` command searches for a pattern in input. Combined with `ls` and a pipe, you can filter filenames by any part of their name:
 
 ```bash
-ls */*.spell | grep "_3_"          # list all tier-3 spells
-ls */*.spell | grep "_3_" > tier3_spells.txt   # save the list to a file
+ls {fire,ice,lightning,earth,wind}/*.spell | grep "_3_"          # list all tier-3 spells (element folders only)
+ls {fire,ice,lightning,earth,wind}/*.spell | grep "_3_" > tier3_spells.txt   # save the list
 ```
 
 The `>` operator redirects output to a file instead of printing it to the screen. If the file already exists it is overwritten; use `>>` to append instead.
@@ -206,7 +206,7 @@ Organized: [today's date]
 
 Save with `Ctrl+O`, exit with `Ctrl+X`.
 
-This habit — documenting your organization decisions while they are fresh — is one of the highest-leverage things you can do for your research career. You will thank yourself in six months.
+This habit — documenting your decisions while the details are still fresh — is one of the most useful things you can do for your future self. You will thank yourself in six months.
 
 {: .note }
 > You will transfer your sorted grimoire to the Yens in [The Scroll Transfer](../scroll-transfer/) room. Keep this directory — you need it there.
